@@ -75,23 +75,23 @@
         
         /* --- DROPDOWN MENU (VYSOUVACÍ NABÍDKA) --- */
         .dropdown {
-            position: relative; /* Rodič pro absolutní pozicování menu */
+            position: relative;
         }
 
         .dropdown-menu {
-            display: none; /* Ve výchozím stavu skryto */
+            display: none;
             position: absolute;
-            top: 100%; /* Hned pod tlačítkem */
+            top: 100%;
             left: 0;
             background-color: var(--white);
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            min-width: 280px; /* Šířka rozbalovacího menu */
+            min-width: 280px;
             border-top: 3px solid var(--hover-color);
             z-index: 9999;
         }
 
         .dropdown:hover .dropdown-menu {
-            display: block; /* Zobrazit při najetí myši */
+            display: block;
         }
 
         .dropdown-menu li {
@@ -105,13 +105,13 @@
             font-weight: 500;
             font-size: 0.9rem;
             border-bottom: 1px solid #eee;
-            text-transform: none; /* Normální velikost písmen v podmenu */
+            text-transform: none;
         }
 
         .dropdown-menu li a:hover {
             background-color: var(--secondary-color);
             color: var(--primary-color);
-            padding-left: 25px; /* Efekt posunutí při najetí */
+            padding-left: 25px;
         }
 
         #menu-toggle, .hamburger { display: none; }
@@ -170,12 +170,6 @@
             min-height: 300px;
         }
 
-        /* Styl pro sekci Výroba */
-        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
-        .tech-item { text-align: center; padding: 20px; border: 1px solid #eee; border-radius: 8px; background: #fff; }
-        .tech-item i { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 15px; }
-        .tech-item h4 { font-size: 1.2rem; margin-bottom: 10px; font-weight: 700; color: var(--primary-color); }
-
         .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
         .info-item { display: flex; align-items: center; margin-bottom: 30px; }
         .info-item i { width: 50px; height: 50px; background: var(--primary-color); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 20px; }
@@ -194,10 +188,9 @@
             .logo { font-size: 1.3rem; }
             .nav-links { display: none; position: absolute; top: 70px; right: 0; width: 100%; background: #fff; flex-direction: column; text-align: center; padding: 20px 0; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
             
-            /* Úprava dropdownu pro mobil */
             .dropdown-menu {
-                position: static; /* Na mobilu nebude "vyskakovat", ale bude součástí seznamu */
-                display: block; /* Na mobilu zobrazíme rovnou, nebo můžeme skrýt, ale hover na mobilu nefunguje dobře */
+                position: static;
+                display: block;
                 box-shadow: none;
                 border-top: none;
                 background-color: #f9f9f9;
@@ -228,6 +221,7 @@
                 <ul class="nav-links">
                     <li><a href="#services">Služby</a></li>
                     
+                    <!-- DROPDOWN ZŮSTÁVA - ODDĚLENÍ ZNAČÍ JEN ODSTRANĚNÍ SEKCE VÝROBA Z HTML -->
                     <li class="dropdown">
                         <a href="#production">Výroba <i class="fas fa-caret-down"></i></a>
                         <ul class="dropdown-menu">
@@ -319,45 +313,7 @@
         </div>
     </section>
 
-    <section id="production" class="section-padding">
-        <div class="container">
-            <h2 class="section-title">Výroba</h2>
-            <div class="about-grid">
-                <div class="about-text">
-                    <p>Tiskové stroje Heidelberg vždy patřily a patří k absolutní špičce na světových trzích a to zejména díky dokonalému dílenskému zpracování, spolehlivosti a technickým inovacím. Dále jsou specifické vysokým stupněm automatizace pro dané potřeby tiskové produkce.</p>
-                    <p>Důležitým pomocníkem je unikátní systém Printec Workflow, který zvládá řešit složité procesy polygrafického provozu jednoduchým způsobem. Od kalkulace, přes plánování výroby, tisk až po expedici. Systém jednoduše zpracuje celou technologii výroby a elektronicky komunikuje se všemi technologiemi a stroji, kterým předává důležité informace a parametry zadané zákazníkem v tiskových datech.</p>
-                    <p>Vysokou kapacitu produkce zajišťují stroje s maximálními formáty papíru B1 (750 × 1050 mm), síly až do 1 mm, při maximálním průjezdu 18 000 archů za hodinu.</p>
-                </div>
-                <div class="tech-grid">
-                    <div class="tech-item">
-                        <i class="fas fa-print"></i>
-                        <h4>Tiskové stroje</h4>
-                        <p>Moderní ofsetové stroje pro špičkový tisk.</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-desktop"></i>
-                        <h4>Předtisková příprava</h4>
-                        <p>Kontrola dat, CTP osvit a digitální nátisky.</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-book-open"></i>
-                        <h4>Dokončující zpracování</h4>
-                        <p>Kompletní knihařské zpracování, vazby V1-V8.</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-gem"></i>
-                        <h4>Zušlechťovací technologie</h4>
-                        <p>Laminace, laky, ražba a speciální efekty.</p>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-truck"></i>
-                        <h4>Logistika</h4>
-                        <p>Vlastní autodoprava a skladovací prostory.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- **SEKCE VÝROBA ÚPLNĚ ODDĚLENÁ/ODSTRANĚNÁ** -->
 
     <section id="about" class="section-padding bg-light">
         <div class="container">
