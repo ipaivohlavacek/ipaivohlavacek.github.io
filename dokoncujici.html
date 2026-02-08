@@ -40,7 +40,6 @@
             z-index: 9999; 
         }
         
-        /* HOVER - otevře se při najetí na li.dropdown nebo na dropdownu */
         .nav-links > li.dropdown:hover > .dropdown-menu,
         .nav-links > li.dropdown:focus-within > .dropdown-menu {
             display: block;
@@ -50,10 +49,10 @@
         .dropdown-menu li a { display: block; padding: 12px 20px; color: var(--text-color); font-weight: 500; font-size: 0.9rem; border-bottom: 1px solid #eee; text-transform: none; transition: var(--transition); }
         .dropdown-menu li a:hover { background-color: var(--secondary-color); color: var(--primary-color); padding-left: 25px; }
 
-        /* --- SUBPAGE HERO --- */
+        /* --- SUBPAGE HERO - STEJNÁ VÝŠKA JAKO NA PREDTISK.HTML (40vh) --- */
         .subpage-hero { 
-            height: 60vh; 
-            min-height: 400px;
+            height: 40vh; /* Změněno z 60vh na 40vh - stejně jako na předtisk.html */
+            min-height: 300px; /* Pridané pro konzistenci */
             background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url('dokoncujici1.jpg');
             background-size: cover; 
             background-position: center;
@@ -67,12 +66,12 @@
         }
 
         .subpage-hero h1 { 
-            font-size: 4rem; 
+            font-size: 3.5rem; /* Stejně jako na předtisk.html */
             font-weight: 800; 
             text-shadow: 2px 2px 15px rgba(0,0,0,0.6);
         }
         
-        .about-text h3 { color: var(--primary-color); font-size: 1.4rem; margin-top: 40px; margin-bottom: 15px; text-transform: uppercase; font-weight: 700; border-bottom: 2px solid var(--hover-color); display: inline-block; padding-bottom: 5px; }
+        .about-text h3 { color: var(--primary-color); font-size: 1.5rem; margin-top: 40px; margin-bottom: 15px; text-transform: uppercase; font-weight: 700; border-bottom: 2px solid var(--hover-color); display: inline-block; padding-bottom: 5px; }
         .about-text p { margin-bottom: 20px; font-size: 1.1rem; text-align: justify; }
 
         footer { background: var(--primary-color); color: #fff; padding: 30px 0; text-align: center; margin-top: 80px; }
@@ -83,7 +82,6 @@
             .hamburger { display: block; font-size: 1.8rem; cursor: pointer; color: var(--primary-color); }
             #menu-toggle:checked ~ .nav-links { display: flex; }
             
-            /* Na mobilu je dropdown vždy vidět */
             .dropdown-menu { position: static; display: block; box-shadow: none; border-top: none; background-color: #f9f9f9; padding-left: 0; min-width: 100%; }
             .dropdown-menu li a { padding: 10px; font-size: 0.85rem; border-bottom: 1px solid #e0e0e0; }
 
@@ -103,7 +101,6 @@
                     <li><a href="index.html#services">Služby</a></li>
                     
                     <li class="dropdown">
-                        <!-- Odstranil jsem onclick - teď funguje čistě hover na desktopu -->
                         <a href="javascript:void(0)">Výroba <i class="fas fa-caret-down"></i></a>
                         <ul class="dropdown-menu" id="vyrobaSubmenu">
                             <li><a href="tisk.html">Moderní tiskové stroje</a></li>
@@ -138,7 +135,7 @@
 
             <h3>Knihařské vazby (V2)</h3>
             <p>Měkká vazba V2 si získala také velkou oblibu. Tato vazba pracuje na principu nanesení zahřátého lepidla na knižní hřbet a následnému přilisování papírové obálky.</p>
-            <p>Profesionální řešení pro lepenou vazbu představují stroje Horizon a Müller Martini. Digitálně řízený systém pro lepenou vazbu V2 doplněné o snášecí linku nám umožňují produkci 5000 taktů za hodinu. Automatizované ovládání s intuitivním přednastavovaváním formátů nám umožňuje rychlé přenastavení při změně formátu lepené publikace. Tloušťka zpracovaného hřbetu je až do 65 mm.</p>
+            <p>Profesionální řešení pro lepenou vazbu představují stroje Horizon a Müller Martini. Digitálně řízený systém pro lepenou vazbu V2 doplněné o snášecí linku nám umožňují produkci 5000 taktů za hodinu. Automatizované ovládání s intuitivním přednastavováním formátů nám umožňuje rychlé přenastavení při změně formátu lepené publikace. Tloušťka zpracovaného hřbetu je až do 65 mm.</p>
 
             <h3>Speciální knihařské vazby</h3>
             <p>Šití nití se používá hlavně u knih a luxusnějších katalogů. Vhodná pro silnější publikace, kde zlepšuje životnost produktu.</p>
@@ -148,5 +145,11 @@
             <p>Do skupiny našich vazacích strojů patří i vazače kovových hřbetů,</p>
         </div>
     </section>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2026 TISK CENTRUM s.r.o. | Všechna práva vyhrazena.</p>
+        </div>
+    </footer>
 </body>
 </html>
