@@ -28,6 +28,8 @@
         #menu-toggle, .hamburger { display: none; }
 
         /* --- DROPDOWN MENU --- */
+        .dropdown { position: relative; }
+        
         .dropdown-menu { 
             display: none; 
             position: absolute; 
@@ -40,6 +42,10 @@
             z-index: 9999; 
         }
         
+        /* TOTO JE KLÍČOVÝ ŘÁDEK PRO OTEVÍRÁNÍ PŘI NAJETÍ MYŠÍ */
+        .dropdown:hover .dropdown-menu { display: block; }
+        
+        /* Třída pro JS otevírání (pro mobily nebo kliknutí) */
         .dropdown-menu.show { display: block; }
 
         .dropdown-menu li { width: 100%; }
@@ -48,16 +54,12 @@
 
         /* --- SUBPAGE HERO (FOTKA JAKO POZADÍ) --- */
         .subpage-hero { 
-            /* Nastavení výšky sekce - fotka bude přesně takto vysoká */
             height: 60vh; 
             min-height: 400px;
             
-            /* ZDE JE NASTAVENÁ FOTKA */
-            /* První část je tmavý filtr pro lepší čitelnost textu */
-            /* Druhá část je samotná fotka */
+            /* ZDE NASTAVENÁ FOTKA + FILTR */
             background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url('dokoncujici1.jpg');
             
-            /* Důležité: Fotka se roztáhne a ořízne tak, aby vyplnila celý rám */
             background-size: cover; 
             background-position: center;
             background-repeat: no-repeat;
@@ -73,7 +75,7 @@
         .subpage-hero h1 { 
             font-size: 4rem; 
             font-weight: 800; 
-            text-shadow: 2px 2px 15px rgba(0,0,0,0.6); /* Stín pod textem */
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.6);
         }
         
         /* Úprava textů */
@@ -88,6 +90,7 @@
             .hamburger { display: block; font-size: 1.8rem; cursor: pointer; color: var(--primary-color); }
             #menu-toggle:checked ~ .nav-links { display: flex; }
             
+            /* Na mobilu chceme menu vidět hned nebo po kliknutí */
             .dropdown-menu { position: static; display: block; box-shadow: none; border-top: none; background-color: #f9f9f9; padding-left: 0; min-width: 100%; }
             .dropdown-menu li a { padding: 10px; font-size: 0.85rem; border-bottom: 1px solid #e0e0e0; }
 
@@ -103,49 +106,4 @@
             <nav>
                 <input type="checkbox" id="menu-toggle">
                 <label for="menu-toggle" class="hamburger"><i class="fas fa-bars"></i></label>
-                <ul class="nav-links">
-                    <li><a href="index.html#services">Služby</a></li>
-                    
-                    <li class="dropdown">
-                        <a href="javascript:void(0)" onclick="toggleMenu(event)">Výroba <i class="fas fa-caret-down"></i></a>
-                        <ul class="dropdown-menu" id="vyrobaSubmenu">
-                            <li><a href="tisk.html">Moderní tiskové stroje</a></li>
-                            <li><a href="predtisk.html">Předtisková příprava</a></li>
-                            <li><a href="dokoncujici.html">Dokončující zpracování tiskovin</a></li>
-                            <li><a href="zuslechteni.html">Zušlechťovací technologie</a></li>
-                        </ul>
-                    </li>
-
-                    <li><a href="index.html#about">O nás</a></li>
-                    <li><a href="index.html#contact">Kontakt</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <section class="subpage-hero">
-        <div class="container">
-            <h1>Dokončující zpracování</h1>
-        </div>
-    </section>
-
-    <section class="container">
-        <div class="about-text">
-            <h3>Knihařské vazby (V1)</h3>
-            <p>Vazba V1 je dnes díky své jednoduchosti a také nízké ceně jednou z nejrozšířenějších vazeb. „Vazbu drátem“ využívají časopisy, nabídkové katalogy, brožury atd.</p>
-            <p>Naše 6-ti stanicová linka Stitchmaster pracuje s maximálním výkonem 12 000 taktů za hodinu s možností zvýšit produkci až na dvojnásobek při dvojprodukčním vyřazení při montáži podkladů, do maximálního formátu 320 × 480 mm.</p>
-            <p>Naši produkci doplňuje další linka V1 Duplo s 20 pozicemi stohového snášeče. Produkce linky je až 5000 taktů za hodinu.</p>
-
-            <h3>Skládací stroje</h3>
-            <p>Stroje Stahlfolder patří k nejprodávanějším zařízením v naší republice. Naše skládací linky patří ke kombinovaným, osm skládacích kapes doplňuje skládací nůž. Jeden ze základních parametrů těchto strojů je snižování nákladů na zakázku, jsou tedy kladeny nároky na zkrácení přípravných časů a zvyšování přesnosti a rychlosti zpracování. Takto vybavené stroje pracují až do 45 000 průchodů za hodinu, ve velké škále gramáží papíru.</p>
-
-            <h3>Knihařské vazby (V2)</h3>
-            <p>Měkká vazba V2 si získala také velkou oblibu. Tato vazba pracuje na principu nanesení zahřátého lepidla na knižní hřbet a následnému přilisování papírové obálky.</p>
-            <p>Profesionální řešení pro lepenou vazbu představují stroje Horizon a Müller Martini. Digitálně řízený systém pro lepenou vazbu V2 doplněné o snášecí linku nám umožňují produkci 5000 taktů za hodinu. Automatizované ovládání s intuitivním přednastavováním formátů nám umožňuje rychlé přenastavení při změně formátu lepené publikace. Tloušťka zpracovaného hřbetu je až do 65 mm.</p>
-
-            <h3>Speciální knihařské vazby</h3>
-            <p>Šití nití se používá hlavně u knih a luxusnějších katalogů. Vhodná pro silnější publikace, kde zlepšuje životnost produktu.</p>
-
-            <h3>Kalendářová twin vazba</h3>
-            <p>Tato kroužková vazba je vhodná pro kalendáře, jak stolní tak nástěnné. Zákazníci si tuto vazbu oblíbili i pro bloky a prezentační brožury.</p>
-            <p>Do skupiny našich vazacích strojů patří i vazače kovových hřbetů,
+                <ul class="nav
