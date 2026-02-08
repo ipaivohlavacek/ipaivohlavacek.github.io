@@ -73,7 +73,7 @@
         .nav-links > li > a { font-weight: 600; color: var(--primary-color); transition: var(--transition); font-size: 0.95rem; text-transform: uppercase; padding: 10px 0; }
         .nav-links > li > a:hover { color: var(--hover-color); }
         
-        /* --- DROPDOWN MENU (VYSOUVACÍ NABÍDKA) --- */
+        /* --- DROPDOWN MENU (VYSOUVACÍ NABÍDKA - DESKTOP) --- */
         .dropdown {
             position: relative;
         }
@@ -90,8 +90,11 @@
             z-index: 9999;
         }
 
-        .dropdown:hover .dropdown-menu {
-            display: block;
+        /* Na desktopu se menu zobrazí při najetí myši */
+        @media (min-width: 769px) {
+            .dropdown:hover .dropdown-menu {
+                display: block;
+            }
         }
 
         .dropdown-menu li {
@@ -188,14 +191,22 @@
             .logo { font-size: 1.3rem; }
             .nav-links { display: none; position: absolute; top: 70px; right: 0; width: 100%; background: #fff; flex-direction: column; text-align: center; padding: 20px 0; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
             
+            /* --- OPRAVA DROPDOWN MENU PRO MOBIL --- */
             .dropdown-menu {
                 position: static;
-                display: block;
+                display: none; /* Skryto ve výchozím stavu */
                 box-shadow: none;
                 border-top: none;
                 background-color: #f9f9f9;
                 padding-left: 0;
+                min-width: 100%;
             }
+            
+            /* Třída pro zobrazení menu přes JS */
+            .dropdown-menu.show {
+                display: block;
+            }
+
             .dropdown-menu li a {
                 padding: 10px;
                 font-size: 0.85rem;
@@ -222,8 +233,8 @@
                     <li><a href="#services">Proces výroby</a></li>
                     
                     <li class="dropdown">
-                        <a href="#production">Výroba <i class="fas fa-caret-down"></i></a>
-                        <ul class="dropdown-menu">
+                        <a href="javascript:void(0)" onclick="toggleMenu(event)">Výroba <i class="fas fa-caret-down"></i></a>
+                        <ul class="dropdown-menu" id="vyrobaSubmenu">
                             <li><a href="tisk.html">Moderní tiskové stroje</a></li>
                             <li><a href="predtisk.html">Předtisková příprava</a></li>
                             <li><a href="dokoncujici.html">Dokončující zpracování tiskovin</a></li>
@@ -280,7 +291,6 @@
         </div>
     </section>
 
-    <!-- **ZMĚNA: "Naše služby" → "Proces výroby"** -->
     <section id="services" class="section-padding bg-light">
         <div class="container">
             <h2 class="section-title">Proces výroby</h2>
@@ -363,6 +373,32 @@
             <p>&copy; 2026 TISK CENTRUM s.r.o. | Všechna práva vyhrazena.</p>
         </div>
     </footer>
+
+    <script>
+        function toggleMenu(event) {
+            // Zabráníme tomu, aby odkaz někam přesměroval (i když je tam #)
+            if (event) event.preventDefault();
+            
+            var submenu = document.getElementById("vyrobaSubmenu");
+            // Přepne třídu .show, která mění display: none na display: block
+            submenu.classList.toggle("show");
+        }
+
+        // Zavření menu při kliknutí mimo něj
+        window.onclick = function(event) {
+            // Pokud kliknutí nebylo na odkaz "Výroba" nebo jeho ikonku
+            if (!event.target.matches('.dropdown > a') && !event.target.matches('.dropdown > a > i')) {
+                var dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    // Pokud je otevřené, zavřeme ho odebráním třídy show
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
 
 </body>
 </html>
