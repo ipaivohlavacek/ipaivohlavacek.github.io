@@ -46,34 +46,34 @@
         .dropdown-menu li a { display: block; padding: 12px 20px; color: var(--text-color); font-weight: 500; font-size: 0.9rem; border-bottom: 1px solid #eee; text-transform: none; }
         .dropdown-menu li a:hover { background-color: var(--secondary-color); color: var(--primary-color); padding-left: 25px; }
 
-        /* OBSAH STRÁNKY - UPRAVENO PRO FOTKU */
+        /* --- SUBPAGE HERO (FOTKA JAKO POZADÍ) --- */
         .subpage-hero { 
-            /* Změnil jsem výšku na auto a přidal padding, aby se to přizpůsobilo obsahu */
-            min-height: 40vh; 
-            background: linear-gradient(45deg, var(--primary-color), var(--primary-light)); 
+            /* Nastavení výšky sekce - fotka bude přesně takto vysoká */
+            height: 60vh; 
+            min-height: 400px;
+            
+            /* ZDE JE NASTAVENÁ FOTKA */
+            /* První část je tmavý filtr pro lepší čitelnost textu */
+            /* Druhá část je samotná fotka */
+            background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url('dokoncujici1.jpg');
+            
+            /* Důležité: Fotka se roztáhne a ořízne tak, aby vyplnila celý rám */
+            background-size: cover; 
+            background-position: center;
+            background-repeat: no-repeat;
+            
             display: flex; 
-            flex-direction: column; /* Prvky pod sebou */
             align-items: center; 
             justify-content: center; 
             text-align: center; 
             color: var(--white); 
             margin-bottom: 50px; 
-            padding: 60px 0; /* Větší prostor nahoře a dole */
-        }
-        .subpage-hero h1 { 
-            font-size: 3.5rem; 
-            font-weight: 800; 
-            margin-bottom: 30px; /* Mezera mezi nadpisem a fotkou */
         }
 
-        /* Styl pro fotku v hlavičce */
-        .hero-image {
-            max-width: 800px; /* Maximální šířka fotky */
-            width: 100%; /* Na mobilu se zmenší */
-            height: auto;
-            border-radius: 8px; /* Zaoblené rohy */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3); /* Stín pod fotkou */
-            border: 4px solid rgba(255, 255, 255, 0.2); /* Jemný rámeček */
+        .subpage-hero h1 { 
+            font-size: 4rem; 
+            font-weight: 800; 
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.6); /* Stín pod textem */
         }
         
         /* Úprava textů */
@@ -126,9 +126,6 @@
     <section class="subpage-hero">
         <div class="container">
             <h1>Dokončující zpracování</h1>
-            
-            <img src="dokoncujici1.jpg" alt="Dokončující zpracování" class="hero-image">
-            
         </div>
     </section>
 
@@ -151,35 +148,4 @@
 
             <h3>Kalendářová twin vazba</h3>
             <p>Tato kroužková vazba je vhodná pro kalendáře, jak stolní tak nástěnné. Zákazníci si tuto vazbu oblíbili i pro bloky a prezentační brožury.</p>
-            <p>Do skupiny našich vazacích strojů patří i vazače kovových hřbetů, při spojení do poloautomatické linky jsme schopni dosáhnout vysoké produkce. Užíváme ji hlavně pro kalendářovou vazbu, jak na stolní tak nástěnné kalendáře. Linka pouze děruje a zavírá spirálu, jednotlivé listy jsou sneseny na snášecí lince. Maximální formát zavírání je 720 mm.</p>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container footer-content">
-            <p>&copy; 2026 TISK CENTRUM s.r.o. | Všechna práva vyhrazena.</p>
-        </div>
-    </footer>
-
-    <script>
-        function toggleMenu(event) {
-            event.preventDefault();
-            var submenu = document.getElementById("vyrobaSubmenu");
-            submenu.classList.toggle("show");
-        }
-
-        window.onclick = function(event) {
-            if (!event.target.matches('.dropdown > a') && !event.target.matches('.dropdown > a > i')) {
-                var dropdowns = document.getElementsByClassName("dropdown-menu");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
-        }
-    </script>
-</body>
-</html>
-
+            <p>Do skupiny našich vazacích strojů patří i vazače kovových hřbetů,
