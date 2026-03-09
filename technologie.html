@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* --- ZÁKLADNÍ NASTAVENÍ (Stejné jako index.html) --- */
+        /* --- ZÁKLADNÍ NASTAVENÍ --- */
         :root {
             --primary-color: #003366; 
             --primary-light: #0055a5;
@@ -19,27 +19,19 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { line-height: 1.6; color: var(--text-color); }
+        body { line-height: 1.6; color: var(--text-color); overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
         
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         .section-padding { padding: 80px 0; }
         
-        .section-title {
-            text-align: center; margin-bottom: 60px; font-size: 2.5rem;
-            color: var(--primary-color); position: relative; font-weight: 700;
-        }
-        .section-title::after {
-            content: ''; display: block; width: 80px; height: 4px;
-            background: var(--hover-color); margin: 15px auto 0;
-        }
-
         /* --- HLAVIČKA --- */
         header { background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
         .header-content { display: flex; justify-content: space-between; align-items: center; height: 70px; }
         .logo { font-size: 1.8rem; font-weight: 800; color: var(--primary-color); text-transform: uppercase; letter-spacing: 2px; }
 
+        /* NAVIGACE */
         .nav-links { display: flex; gap: 30px; align-items: center; }
         .nav-links > li { position: relative; }
         .nav-links > li > a { font-weight: 600; color: var(--primary-color); transition: var(--transition); font-size: 0.95rem; text-transform: uppercase; padding: 15px 0; display: block; }
@@ -60,43 +52,58 @@
             z-index: 9999; 
         }
         
-        /* Otevírání najetím pouze pro počítače */
         @media (min-width: 769px) {
             .dropdown:hover .dropdown-menu { display: block; }
         }
 
-        /* Třída pro JS ovládané menu na mobilech */
         .dropdown-menu.show { display: block !important; }
-
         .dropdown-menu li { width: 100%; }
         .dropdown-menu li a { display: block; padding: 12px 20px; color: var(--text-color); font-weight: 500; font-size: 0.9rem; border-bottom: 1px solid #eee; text-transform: none; transition: var(--transition); }
         .dropdown-menu li a:hover { background-color: var(--secondary-color); color: var(--primary-color); padding-left: 25px; }
 
-
-        /* --- SUBPAGE HERO (Zjednodušený banner pro podstránku) --- */
-        .subpage-hero {
-            height: 40vh; /* Menší výška než na hlavní stránce */
-            background: linear-gradient(45deg, var(--primary-color), var(--primary-light));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-            margin-bottom: 50px;
+        /* --- SUBPAGE HERO --- */
+        .subpage-hero { 
+            height: 40vh; 
+            min-height: 300px;
+            background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7));
+            background-size: cover; 
+            background-position: center;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            color: var(--white); 
+            margin-bottom: 50px; 
         }
 
-        .subpage-hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
+        .subpage-hero h1 { 
+            font-size: 3.5rem; 
+            font-weight: 800; 
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.6);
         }
 
-        /* --- TEXTOVÝ OBSAH --- */
-        .about-text p { margin-bottom: 20px; font-size: 1.1rem; text-align: justify; }
-        
-        /* Boxy s ikonami */
+        /* --- GRID --- */
         .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 50px; }
-        .tech-item { text-align: center; padding: 30px; border: 1px solid #eee; border-radius: 8px; background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        
+        .tech-item { text-align: center; padding: 40px 30px; border: 1px solid #eee; border-radius: 8px; background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: var(--transition); }
+        .tech-item:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .tech-item i { font-size: 3rem; color: var(--hover-color); margin-bottom: 20px; }
+
+        /* --- ANIMACE (REVEAL) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            visibility: hidden;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+
+        /* --- PATIČKA --- */
+        footer { background: var(--primary-color); color: #fff; padding: 30px 0; text-align: center; margin-top: 80px; }
+
         /* MOBILNÍ VERZE */
         @media (max-width: 768px) {
             .logo { font-size: 1.3rem; }
@@ -104,12 +111,10 @@
             .hamburger { display: block; font-size: 1.8rem; cursor: pointer; color: var(--primary-color); }
             #menu-toggle:checked ~ .nav-links { display: flex; }
             
-            /* Mobilní úprava dropdownu - defaultně skryto */
             .dropdown-menu { position: static; display: none; box-shadow: none; border-top: none; background-color: #f9f9f9; padding-left: 0; min-width: 100%; }
             .dropdown-menu li a { padding: 10px; font-size: 0.85rem; border-bottom: 1px solid #e0e0e0; }
 
             .subpage-hero h1 { font-size: 2.5rem; }
-            .about-text p { text-align: left; }
         }
     </style>
 </head>
@@ -122,8 +127,6 @@
                 <input type="checkbox" id="menu-toggle">
                 <label for="menu-toggle" class="hamburger"><i class="fas fa-bars"></i></label>
                 <ul class="nav-links">
-                    <li><a href="index.html#services">Služby</a></li>
-                    
                     <li class="dropdown">
                         <a href="javascript:void(0)" onclick="toggleMenu(event)">Výroba <i class="fas fa-caret-down"></i></a>
                         <ul class="dropdown-menu" id="vyrobaSubmenu">
@@ -131,9 +134,9 @@
                             <li><a href="predtisk.html">Předtisková příprava</a></li>
                             <li><a href="dokoncujici.html">Dokončující zpracování tiskovin</a></li>
                             <li><a href="zuslechteni.html">Zušlechťovací technologie</a></li>
+                            <li><a href="logistika.html">Logistika 24/7</a></li>
                         </ul>
                     </li>
-
                     <li><a href="index.html#about">O nás</a></li>
                     <li><a href="index.html#contact">Kontakt</a></li>
                 </ul>
@@ -147,24 +150,62 @@
         </div>
     </section>
 
+    <section class="container">
+        <div class="tech-grid">
+            <div class="tech-item reveal">
+                <i class="fas fa-microchip"></i>
+                <h3>Moderní CTP</h3>
+                <p>Špičková předtisková příprava pro maximální ostrost bodu.</p>
+            </div>
+            <div class="tech-item reveal" style="transition-delay: 0.2s;">
+                <i class="fas fa-print"></i>
+                <h3>LED UV Tisk</h3>
+                <p>Revoluční technologie tisku s okamžitým vytvrzením barev.</p>
+            </div>
+            <div class="tech-item reveal" style="transition-delay: 0.4s;">
+                <i class="fas fa-tools"></i>
+                <h3>Knihařské linky</h3>
+                <p>Kompletní dokončující zpracování pod jednou střechou.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 TISK CENTRUM s.r.o. | Všechna práva vyhrazena.</p>
+        </div>
+    </footer>
+
     <script>
         function toggleMenu(event) {
             event.preventDefault();  
             event.stopPropagation(); 
-            
             var submenu = document.getElementById("vyrobaSubmenu");
             submenu.classList.toggle("show");
         }
 
-        // Kliknutím kamkoliv jinam se menu zavře
         document.addEventListener("click", function(event) {
             var submenu = document.getElementById("vyrobaSubmenu");
             var dropdown = document.querySelector(".dropdown");
-            
             if (submenu && submenu.classList.contains("show") && !dropdown.contains(event.target)) {
                 submenu.classList.remove("show");
             }
         });
+
+        // REVEAL ANIMATION SCRIPT
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        window.addEventListener("load", reveal);
     </script>
 </body>
 </html>
