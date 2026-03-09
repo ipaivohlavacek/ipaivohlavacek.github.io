@@ -92,7 +92,6 @@
             .dropdown:hover .dropdown-menu { display: block; } 
         }
 
-        /* Třída ovládaná JavaScriptem s absolutní prioritou */
         .dropdown-menu.show { display: block !important; }
 
         .dropdown-menu li { width: 100%; }
@@ -154,6 +153,7 @@
             background-position: center;
             background-repeat: no-repeat;
             border: 1px solid rgba(255,255,255,0.1);
+            cursor: pointer;
         }
         
         .service-card:hover { 
@@ -226,9 +226,9 @@
                             <li><a href="predtisk.html">Předtisková příprava</a></li>
                             <li><a href="dokoncujici.html">Dokončující zpracování tiskovin</a></li>
                             <li><a href="zuslechteni.html">Zušlechťovací technologie</a></li>
+                            <li><a href="logistika.html">Logistika 24/7</a></li>
                         </ul>
                     </li>
-
                     <li><a href="#about">O nás</a></li>
                     <li><a href="#contact">Kontakt</a></li>
                 </ul>
@@ -300,11 +300,11 @@
                     <p>Digitálně řízený systém pro lepenou vazbu V2 doplněný o snášecí linku nám umožňuje vysokou produkci.</p>
                 </a>
 
-                <div class="service-card" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('index-logistika.jpg');">
+                <a href="logistika.html" class="service-card" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('index-logistika.jpg'); display: block;">
                     <i class="fas fa-truck-moving icon"></i>
                     <h3>Logistika 24/7</h3>
                     <p>Plně respektujeme potřeby partnerů v reálné obslužnosti až do požadavku na 7 dní v týdnu a 24 hodin denně.</p>
-                </div>
+                </a>
                 
             </div>
         </div>
