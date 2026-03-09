@@ -66,7 +66,6 @@
         .subpage-hero { 
             height: 40vh; 
             min-height: 300px;
-            /* Nastavení predtisk1.jpg jako pozadí s filtrem */
             background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url('predtisk1.jpg');
             background-size: cover; 
             background-position: center;
@@ -116,8 +115,6 @@
                 <input type="checkbox" id="menu-toggle">
                 <label for="menu-toggle" class="hamburger"><i class="fas fa-bars"></i></label>
                 <ul class="nav-links">
-                    <li><a href="index.html#services">Služby</a></li>
-                    
                     <li class="dropdown">
                         <a href="javascript:void(0)" onclick="toggleMenu(event)">Výroba <i class="fas fa-caret-down"></i></a>
                         <ul class="dropdown-menu" id="vyrobaSubmenu">
@@ -125,9 +122,9 @@
                             <li><a href="predtisk.html">Předtisková příprava</a></li>
                             <li><a href="dokoncujici.html">Dokončující zpracování tiskovin</a></li>
                             <li><a href="zuslechteni.html">Zušlechťovací technologie</a></li>
+                            <li><a href="logistika.html">Logistika 24/7</a></li>
                         </ul>
                     </li>
-
                     <li><a href="index.html#about">O nás</a></li>
                     <li><a href="index.html#contact">Kontakt</a></li>
                 </ul>
@@ -171,7 +168,6 @@
         function toggleMenu(event) {
             event.preventDefault();  
             event.stopPropagation(); 
-            
             var submenu = document.getElementById("vyrobaSubmenu");
             submenu.classList.toggle("show");
         }
@@ -179,7 +175,6 @@
         document.addEventListener("click", function(event) {
             var submenu = document.getElementById("vyrobaSubmenu");
             var dropdown = document.querySelector(".dropdown");
-            
             if (submenu && submenu.classList.contains("show") && !dropdown.contains(event.target)) {
                 submenu.classList.remove("show");
             }
