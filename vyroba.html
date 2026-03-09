@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naše technologie | TISKCENTRUM</title>
+    <title>Výroba a technologie | TISKCENTRUM</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* --- ZÁKLADNÍ NASTAVENÍ (Stejné jako index.html) --- */
+        /* --- ZÁKLADNÍ NASTAVENÍ --- */
         :root {
             --primary-color: #003366; 
             --primary-light: #0055a5;
@@ -19,57 +19,216 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { line-height: 1.6; color: var(--text-color); }
+        body { line-height: 1.6; color: var(--text-color); overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
         
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         .section-padding { padding: 80px 0; }
         
-        .section-title {
-            text-align: center; margin-bottom: 60px; font-size: 2.5rem;
-            color: var(--primary-color); position: relative; font-weight: 700;
-        }
-        .section-title::after {
-            content: ''; display: block; width: 80px; height: 4px;
-            background: var(--hover-color); margin: 15px auto 0;
-        }
-
         /* --- HLAVIČKA --- */
         header { background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
         .header-content { display: flex; justify-content: space-between; align-items: center; height: 70px; }
         .logo { font-size: 1.8rem; font-weight: 800; color: var(--primary-color); text-transform: uppercase; letter-spacing: 2px; }
 
-        .nav-links { display: flex; gap: 30px; }
-        /* Odkazy v menu */
-        .nav-links a { font-weight: 600; color: var(--primary-color); transition: var(--transition); font-size: 0.95rem; text-transform: uppercase; }
-        .nav-links a:hover { color: var(--hover-color); }
-        /* Aktivní odkaz (tučný/jiná barva) */
-        .nav-links a.active { color: var(--hover-color); }
-
+        /* NAVIGACE */
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links > li { position: relative; }
+        .nav-links > li > a { font-weight: 600; color: var(--primary-color); transition: var(--transition); font-size: 0.95rem; text-transform: uppercase; padding: 15px 0; display: block; }
+        .nav-links > li > a:hover { color: var(--hover-color); }
         #menu-toggle, .hamburger { display: none; }
-
-        /* --- SUBPAGE HERO (Zjednodušený banner pro podstránku) --- */
-        .subpage-hero {
-            height: 40vh; /* Menší výška než na hlavní stránce */
-            background: linear-gradient(45deg, var(--primary-color), var(--primary-light));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-            margin-bottom: 50px;
-        }
-
-        .subpage-hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-        }
-
-        /* --- TEXTOVÝ OBSAH --- */
-        .about-text p { margin-bottom: 20px; font-size: 1.1rem; text-align: justify; }
         
-        /* Boxy s ikonami */
-        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 50px; }
-        .tech-item { text-align: center; padding: 30px; border: 1px solid #eee; border-radius: 8px; background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .tech-item i
+        /* --- DROPDOWN MENU --- */
+        .dropdown { position: relative; }
+        .dropdown-menu { 
+            display: none; 
+            position: absolute; 
+            top: 100%; 
+            left: 0; 
+            background-color: var(--white); 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+            min-width: 280px; 
+            border-top: 3px solid var(--hover-color); 
+            z-index: 9999; 
+        }
+        
+        @media (min-width: 769px) {
+            .dropdown:hover .dropdown-menu { display: block; }
+        }
+
+        .dropdown-menu.show { display: block !important; }
+        .dropdown-menu li { width: 100%; }
+        .dropdown-menu li a { display: block; padding: 12px 20px; color: var(--text-color); font-weight: 500; font-size: 0.9rem; border-bottom: 1px solid #eee; text-transform: none; transition: var(--transition); }
+        .dropdown-menu li a:hover { background-color: var(--secondary-color); color: var(--primary-color); padding-left: 25px; }
+
+        /* --- SUBPAGE HERO --- */
+        .subpage-hero { 
+            height: 40vh; 
+            min-height: 300px;
+            background: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 51, 102, 0.8));
+            background-size: cover; 
+            background-position: center;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            color: var(--white); 
+            margin-bottom: 50px; 
+        }
+
+        .subpage-hero h1 { 
+            font-size: 3.5rem; 
+            font-weight: 800; 
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.6);
+            text-transform: uppercase;
+        }
+
+        /* --- VÝROBNÍ GRID --- */
+        .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 50px; }
+        .tech-item { 
+            text-align: center; 
+            padding: 40px 30px; 
+            border: 1px solid #eee; 
+            border-radius: 8px; 
+            background: #fff; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+            transition: var(--transition); 
+            display: block;
+        }
+        .tech-item:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-color: var(--hover-color); }
+        .tech-item i { font-size: 3.5rem; color: var(--primary-color); margin-bottom: 20px; transition: var(--transition); }
+        .tech-item:hover i { color: var(--hover-color); }
+        .tech-item h3 { margin-bottom: 15px; color: var(--primary-color); font-weight: 700; text-transform: uppercase; font-size: 1.1rem; }
+        .tech-item p { font-size: 0.95rem; color: #666; }
+
+        /* --- ANIMACE (REVEAL) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            visibility: hidden;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+
+        /* --- PATIČKA --- */
+        footer { background: var(--primary-color); color: #fff; padding: 30px 0; text-align: center; margin-top: 80px; }
+
+        /* MOBILNÍ VERZE */
+        @media (max-width: 768px) {
+            .logo { font-size: 1.3rem; }
+            .nav-links { display: none; position: absolute; top: 70px; right: 0; width: 100%; background: #fff; flex-direction: column; text-align: center; padding: 20px 0; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
+            .hamburger { display: block; font-size: 1.8rem; cursor: pointer; color: var(--primary-color); }
+            #menu-toggle:checked ~ .nav-links { display: flex; }
+            .dropdown-menu { position: static; display: none; box-shadow: none; border-top: none; background-color: #f9f9f9; padding-left: 0; min-width: 100%; }
+            .dropdown-menu.show { display: block !important; }
+            .subpage-hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <a href="index.html" class="logo">TISKCENTRUM</a>
+            <nav>
+                <input type="checkbox" id="menu-toggle">
+                <label for="menu-toggle" class="hamburger"><i class="fas fa-bars"></i></label>
+                <ul class="nav-links">
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" onclick="toggleMenu(event)">Výroba <i class="fas fa-caret-down"></i></a>
+                        <ul class="dropdown-menu" id="vyrobaSubmenu">
+                            <li><a href="tisk.html">Moderní tiskové stroje</a></li>
+                            <li><a href="predtisk.html">Předtisková příprava</a></li>
+                            <li><a href="dokoncujici.html">Dokončující zpracování tiskovin</a></li>
+                            <li><a href="zuslechteni.html">Zušlechťovací technologie</a></li>
+                            <li><a href="logistika.html">Logistika 24/7</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="index.html#about">O nás</a></li>
+                    <li><a href="index.html#contact">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="subpage-hero">
+        <div class="container">
+            <h1 class="reveal">Výroba a technologie</h1>
+        </div>
+    </section>
+
+    <section class="container section-padding">
+        <div class="about-text reveal">
+            <p>Zajišťujeme kompletní výrobní cyklus od přípravy dat až po finální distribuci. Naše technologické vybavení patří ke světové špičce, což nám umožňuje dosahovat maximální kvality a efektivity při výrobě knih, časopisů i reklamních tiskovin.</p>
+        </div>
+
+        <div class="tech-grid">
+            <a href="predtisk.html" class="tech-item reveal">
+                <i class="fas fa-desktop"></i>
+                <h3>Předtisková příprava</h3>
+                <p>Profesionální kontrola dat a osvit tiskových desek technologií CTP.</p>
+            </a>
+
+            <a href="tisk.html" class="tech-item reveal" style="transition-delay: 0.2s;">
+                <i class="fas fa-print"></i>
+                <h3>Ofsetový tisk</h3>
+                <p>Špičkové stroje Heidelberg pro velkoformátový tisk s vysokou automatizací.</p>
+            </a>
+
+            <a href="dokoncujici.html" class="tech-item reveal" style="transition-delay: 0.4s;">
+                <i class="fas fa-cut"></i>
+                <h3>Dokončující zpracování</h3>
+                <p>Vazby V1, V2, skládání a komplexní knihařské práce pro dokonalý produkt.</p>
+            </a>
+
+            <a href="zuslechteni.html" class="tech-item reveal" style="transition-delay: 0.6s;">
+                <i class="fas fa-magic"></i>
+                <h3>Zušlechťování</h3>
+                <p>Laminace, UV lakování a ražba pro exkluzivní vzhled vašich tiskovin.</p>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 TISK CENTRUM s.r.o. | Všechna práva vyhrazena.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu(event) {
+            event.preventDefault();  
+            event.stopPropagation(); 
+            var submenu = document.getElementById("vyrobaSubmenu");
+            submenu.classList.toggle("show");
+        }
+
+        document.addEventListener("click", function(event) {
+            var submenu = document.getElementById("vyrobaSubmenu");
+            var dropdown = document.querySelector(".dropdown");
+            if (submenu && submenu.classList.contains("show") && !dropdown.contains(event.target)) {
+                submenu.classList.remove("show");
+            }
+        });
+
+        // REVEAL ANIMATION SCRIPT
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        window.addEventListener("load", reveal);
+    </script>
+</body>
+</html>
