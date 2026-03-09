@@ -61,31 +61,29 @@
         .dropdown-menu li a { display: block; padding: 12px 20px; color: var(--text-color); font-weight: 500; font-size: 0.9rem; border-bottom: 1px solid #eee; text-transform: none; transition: var(--transition); }
         .dropdown-menu li a:hover { background-color: var(--secondary-color); color: var(--primary-color); padding-left: 25px; }
 
-        /* --- SUBPAGE HERO --- */
+        /* --- SUBPAGE HERO (OPRAVENO: Obrázek jako pozadí) --- */
         .subpage-hero { 
-            height: auto; 
-            min-height: 40vh; 
-            padding: 60px 0;
-            background: linear-gradient(45deg, var(--primary-color), var(--primary-light)); 
+            height: 40vh; 
+            min-height: 300px;
+            /* Nastavení obrázku jako pozadí s modrým filtrem (stejné jako u dokoncujici.html) */
+            background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url('zuslechteni1.jpg');
+            background-size: cover; 
+            background-position: center;
+            background-repeat: no-repeat;
             display: flex; 
-            flex-direction: column;
             align-items: center; 
             justify-content: center; 
             text-align: center; 
             color: var(--white); 
             margin-bottom: 50px; 
         }
-        .subpage-hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 30px; }
-
-        .hero-img {
-            max-width: 900px;
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        .subpage-hero h1 { 
+            font-size: 3.5rem; 
+            font-weight: 800; 
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.6);
         }
         
-        /* Úprava textů */
+        /* Úprava textů v těle */
         .about-text h3 { color: var(--primary-color); font-size: 1.4rem; margin-top: 40px; margin-bottom: 15px; text-transform: uppercase; font-weight: 700; border-bottom: 2px solid var(--hover-color); display: inline-block; padding-bottom: 5px; }
         .about-text p { margin-bottom: 20px; font-size: 1.1rem; text-align: justify; }
 
@@ -94,7 +92,7 @@
 
         /* MOBILNÍ VERZE */
         @media (max-width: 768px) {
-            .logo { font-size: 1.3rem; } /* Sjednocená velikost loga */
+            .logo { font-size: 1.3rem; }
             .nav-links { display: none; position: absolute; top: 70px; right: 0; width: 100%; background: #fff; flex-direction: column; text-align: center; padding: 20px 0; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
             .hamburger { display: block; font-size: 1.8rem; cursor: pointer; color: var(--primary-color); }
             #menu-toggle:checked ~ .nav-links { display: flex; }
@@ -104,7 +102,6 @@
 
             .subpage-hero h1 { font-size: 2.5rem; }
             .about-text p { text-align: left; }
-            .hero-img { max-width: 100%; }
         }
     </style>
 </head>
@@ -139,7 +136,6 @@
     <section class="subpage-hero">
         <div class="container">
             <h1>Zušlechťovací technologie</h1>
-            <img src="zuslechteni1.jpg" alt="Zušlechťovací technologie" class="hero-img">
         </div>
     </section>
 
