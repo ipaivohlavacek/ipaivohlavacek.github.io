@@ -155,27 +155,22 @@
     </footer>
 
     <script>
+        // Funkce pro otevření/zavření po kliknutí na "Výroba"
         function toggleMenu(event) {
-            // Zabrání prokliku
-            if (event) event.preventDefault();
+            event.preventDefault();  // Zabrání poskočení stránky nahoru
+            event.stopPropagation(); // ZAKÁŽE probublávání kliknutí (klíčová oprava)
             
             var submenu = document.getElementById("vyrobaSubmenu");
-            // Přepne třídu .show (zobrazit/skrýt)
             submenu.classList.toggle("show");
         }
 
-        // Zavření menu při kliknutí mimo něj
-        window.onclick = function(event) {
-            if (!event.target.matches('.dropdown > a') && !event.target.matches('.dropdown > a > i')) {
-                var dropdowns = document.getElementsByClassName("dropdown-menu");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
+        // Spolehlivé zavření menu při kliknutí kamkoliv jinam na stránce
+        document.addEventListener("click", function() {
+            var submenu = document.getElementById("vyrobaSubmenu");
+            if (submenu && submenu.classList.contains("show")) {
+                submenu.classList.remove("show");
             }
-        }
+        });
     </script>
 </body>
 </html>
