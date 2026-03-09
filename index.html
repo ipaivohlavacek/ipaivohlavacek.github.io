@@ -9,9 +9,9 @@
     <style>
         /* --- ZÁKLADNÍ NASTAVENÍ --- */
         :root {
-            --primary-color: #003366; /* Tmavě modrá */
+            --primary-color: #003366; 
             --primary-light: #0055a5;
-            --hover-color: #3498db;   /* Světle modrá na akcenty */
+            --hover-color: #3498db;   
             --secondary-color: #f9f9f9;
             --text-color: #333;
             --white: #fff;
@@ -88,10 +88,12 @@
             z-index: 9999;
         }
 
-        /* Na počítači se menu zobrazí po najetí myši */
         @media (min-width: 769px) { 
             .dropdown:hover .dropdown-menu { display: block; } 
         }
+
+        /* Třída ovládaná JavaScriptem s absolutní prioritou */
+        .dropdown-menu.show { display: block !important; }
 
         .dropdown-menu li { width: 100%; }
         .dropdown-menu li a {
@@ -107,7 +109,6 @@
             position: relative; height: 75vh; overflow: hidden; display: flex; align-items: center;
         }
         
-        /* OPRAVENÁ TŘÍDA PRO VIDEO */
         .back-video {
             position: absolute; 
             top: 50%; 
@@ -141,20 +142,17 @@
         .bg-light { background: var(--secondary-color); }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
         
-        /* --- DESIGN KARET S OBRÁZKY --- */
         .service-card {
-            background-color: #2c3e50; /* Záložní barva */
-            color: var(--white);       /* Text je bílý */
+            background-color: #2c3e50; 
+            color: var(--white);
             padding: 50px 40px;
             text-align: center;
             border-radius: 6px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             transition: var(--transition);
-            /* Nastavení pozadí */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            /* Jemný rámeček */
             border: 1px solid rgba(255,255,255,0.1);
         }
         
@@ -163,19 +161,14 @@
             box-shadow: 0 15px 40px rgba(0,0,0,0.3); 
         }
         
-        /* Ikona v kartě */
         .service-card .icon {
             font-size: 3.5rem;
-            color: rgba(255,255,255,0.9); /* Bílá, mírně průhledná */
+            color: rgba(255,255,255,0.9);
             margin-bottom: 25px;
             transition: var(--transition);
         }
         
-        .service-card:hover .icon { 
-            color: var(--hover-color); /* Při najetí zmodrá */
-        }
-        
-        /* Skrytí původních obrázkových karet */
+        .service-card:hover .icon { color: var(--hover-color); }
         .service-img { display: none; }
 
         .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
@@ -196,10 +189,9 @@
             .logo { font-size: 1.3rem; }
             .nav-links { display: none; position: absolute; top: 70px; right: 0; width: 100%; background: #fff; flex-direction: column; text-align: center; padding: 20px 0; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
             
-            /* --- MENU NA MOBILU --- */
             .dropdown-menu { 
                 position: static; 
-                display: none; /* Skryté ve výchozím stavu */
+                display: none; 
                 box-shadow: none; 
                 border-top: none; 
                 background-color: #f9f9f9; 
@@ -207,17 +199,13 @@
                 min-width: 100%; 
             }
             
-            /* Třída pro zobrazení (přidává JS) */
             .dropdown-menu.show { display: block; }
-
             .dropdown-menu li a { padding: 10px; font-size: 0.85rem; border-bottom: 1px solid #e0e0e0; }
             .hamburger { display: block; font-size: 1.8rem; cursor: pointer; color: var(--primary-color); }
             #menu-toggle:checked ~ .nav-links { display: flex; }
             .contact-wrapper { grid-template-columns: 1fr; }
             .hero h1 { font-size: 2.5rem; }
             .counter-grid { grid-template-columns: 1fr; gap: 40px; }
-            
-            /* Úprava karet na mobilu */
             .service-card { padding: 40px 25px; }
         }
     </style>
@@ -231,8 +219,6 @@
                 <input type="checkbox" id="menu-toggle">
                 <label for="menu-toggle" class="hamburger"><i class="fas fa-bars"></i></label>
                 <ul class="nav-links">
-                    <li><a href="#services">Proces výroby</a></li>
-                    
                     <li class="dropdown">
                         <a href="javascript:void(0)" onclick="toggleMenu(event)">Výroba <i class="fas fa-caret-down"></i></a>
                         <ul class="dropdown-menu" id="vyrobaSubmenu">
@@ -377,26 +363,21 @@
 
     <script>
         function toggleMenu(event) {
-            // Zabrání prokliku
-            if (event) event.preventDefault();
-            
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
             var submenu = document.getElementById("vyrobaSubmenu");
-            // Přepne třídu .show (zobrazit/skrýt)
             submenu.classList.toggle("show");
         }
 
-        // Zavření menu při kliknutí mimo něj
-        window.onclick = function(event) {
-            if (!event.target.matches('.dropdown > a') && !event.target.matches('.dropdown > a > i')) {
-                var dropdowns = document.getElementsByClassName("dropdown-menu");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
+        document.addEventListener("click", function(event) {
+            var submenu = document.getElementById("vyrobaSubmenu");
+            var dropdown = document.querySelector(".dropdown");
+            if (submenu && submenu.classList.contains("show") && !dropdown.contains(event.target)) {
+                submenu.classList.remove("show");
             }
-        }
+        });
     </script>
 
     <script>
@@ -404,19 +385,14 @@
             var video = document.getElementById('bg-video');
             var source = document.createElement('source');
 
-            // Kontrola šířky okna prohlížeče
             if (window.innerWidth <= 768) {
-                // Načtení videa pro mobily
                 source.src = 'video-mobile.mp4'; 
             } else {
-                // Načtení původního videa pro počítače
                 source.src = 'video.mp4'; 
             }
 
             source.type = 'video/mp4';
             video.appendChild(source);
-            
-            // Příkaz k načtení vybraného videa
             video.load(); 
         });
     </script>
