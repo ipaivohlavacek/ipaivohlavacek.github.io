@@ -19,7 +19,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { line-height: 1.6; color: var(--text-color); }
+        body { line-height: 1.6; color: var(--text-color); overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
         
@@ -58,94 +58,34 @@
 
         /* --- HLAVIČKA --- */
         header { background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
-        
         .header-content { display: flex; justify-content: space-between; align-items: center; height: 70px; }
-        
-        .logo { 
-            font-size: 1.8rem; 
-            font-weight: 800; 
-            color: var(--primary-color); 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-        }
+        .logo { font-size: 1.8rem; font-weight: 800; color: var(--primary-color); text-transform: uppercase; letter-spacing: 2px; }
 
         .nav-links { display: flex; gap: 30px; align-items: center; }
         .nav-links > li > a { font-weight: 600; color: var(--primary-color); transition: var(--transition); font-size: 0.95rem; text-transform: uppercase; padding: 10px 0; }
         .nav-links > li > a:hover { color: var(--hover-color); }
         
-        /* --- DROPDOWN MENU --- */
         .dropdown { position: relative; }
-        
         .dropdown-menu {
-            display: none; 
-            position: absolute; 
-            top: 100%; 
-            left: 0;
-            background-color: var(--white); 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            min-width: 280px; 
-            border-top: 3px solid var(--hover-color); 
-            z-index: 9999;
+            display: none; position: absolute; top: 100%; left: 0;
+            background-color: var(--white); box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            min-width: 280px; border-top: 3px solid var(--hover-color); z-index: 9999;
         }
-
-        @media (min-width: 769px) { 
-            .dropdown:hover .dropdown-menu { display: block; } 
-        }
-
+        @media (min-width: 769px) { .dropdown:hover .dropdown-menu { display: block; } }
         .dropdown-menu.show { display: block !important; }
-
         .dropdown-menu li { width: 100%; }
-        .dropdown-menu li a {
-            display: block; padding: 12px 20px; color: var(--text-color);
-            font-weight: 500; font-size: 0.9rem; border-bottom: 1px solid #eee; text-transform: none;
-        }
+        .dropdown-menu li a { display: block; padding: 12px 20px; color: var(--text-color); font-weight: 500; font-size: 0.9rem; border-bottom: 1px solid #eee; text-transform: none; }
         .dropdown-menu li a:hover { background-color: var(--secondary-color); color: var(--primary-color); padding-left: 25px; }
 
         #menu-toggle, .hamburger { display: none; }
 
         /* --- HERO SEKCE --- */
-        .hero-video-container {
-            position: relative; height: 75vh; overflow: hidden; display: flex; align-items: center;
-        }
-        
-        .back-video {
-            position: absolute; 
-            top: 50%; 
-            left: 50%; 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            transform: translate(-50%, -50%);
-            z-index: -1; 
-        }
-        
-        .hero-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 30, 60, 0.6); display: flex; align-items: center;
-        }
-
-        /* OPRAVENO: Zarovnání na střed pro PC i Mobil */
-        .hero-content { 
-            color: var(--white); 
-            text-align: center; /* Zarovnání textu na střed */
-            width: 100%; 
-            z-index: 1; 
-        }
-
-        .hero h1 { 
-            font-size: 4rem; 
-            margin-bottom: 25px; 
-            font-weight: 800; 
-            line-height: 1.2; 
-        }
-
-        .hero p { 
-            font-size: 1.3rem; 
-            margin-bottom: 40px; 
-            max-width: 800px; 
-            margin-left: auto; /* Vycentrování odstavce */
-            margin-right: auto; 
-        }
+        .hero-video-container { position: relative; height: 75vh; overflow: hidden; display: flex; align-items: center; }
+        .back-video { position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; object-fit: cover; transform: translate(-50%, -50%); z-index: -1; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 30, 60, 0.6); display: flex; align-items: center; }
+        .hero-content { color: var(--white); text-align: center; width: 100%; z-index: 1; }
+        .hero h1 { font-size: 4rem; margin-bottom: 25px; font-weight: 800; line-height: 1.2; }
+        .hero p { font-size: 1.3rem; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto; }
         
         /* --- STATISTIKY --- */
         .counter-bar { background-color: var(--primary-color); color: var(--white); padding: 50px 0; position: relative; z-index: 10; }
@@ -158,93 +98,58 @@
         .about-grid { display: block; text-align: center; max-width: 1000px; margin: 0 auto; }
         .about-text p { margin-bottom: 20px; font-size: 1.1rem; text-align: justify; }
 
-        .about-photos {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-top: 40px;
-        }
-        .about-photos img {
-            width: 100%;
-            height: auto;
-            border-radius: 6px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            object-fit: cover;
-        }
+        .about-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+        .about-photos img { width: 100%; height: auto; border-radius: 6px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); object-fit: cover; }
         
         .bg-light { background: var(--secondary-color); }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
         
         .service-card {
-            background-color: #2c3e50; 
-            color: var(--white);
-            padding: 50px 40px;
-            text-align: center;
-            border-radius: 6px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: var(--transition);
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            border: 1px solid rgba(255,255,255,0.1);
-            cursor: pointer;
+            background-color: #2c3e50; color: var(--white); padding: 50px 40px; text-align: center;
+            border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: var(--transition);
+            background-size: cover; background-position: center; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;
         }
-        
-        .service-card:hover { 
-            transform: translateY(-10px); 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3); 
-        }
-        
-        .service-card .icon {
-            font-size: 3.5rem;
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 25px;
-            transition: var(--transition);
-        }
-        
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
+        .service-card .icon { font-size: 3.5rem; color: rgba(255,255,255,0.9); margin-bottom: 25px; transition: var(--transition); }
         .service-card:hover .icon { color: var(--hover-color); }
-        .service-img { display: none; }
 
         .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
         .info-item { display: flex; align-items: center; margin-bottom: 30px; }
         .info-item i { width: 50px; height: 50px; background: var(--primary-color); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 20px; }
         .contact-form { display: flex; flex-direction: column; gap: 20px; }
         .contact-form input, .contact-form textarea { padding: 15px; border: 1px solid #ddd; border-radius: 4px; background: var(--secondary-color); }
-        .contact-form .btn { background: var(--primary-color); color: var(--white); border: none; }
         footer { background: var(--primary-color); color: #fff; padding: 30px 0; text-align: center; }
 
-        /* MOBILNÍ VERZE */
-        @media (max-width: 992px) {
-            .counter-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
-            .about-text p { text-align: left; }
+        /* --- ANIMACE (REVEAL) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            visibility: hidden;
         }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+        /* Zpoždění pro karty (Stagger effect) */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.3s; }
+        .delay-3 { transition-delay: 0.5s; }
+        .delay-4 { transition-delay: 0.7s; }
 
+        /* MOBILNÍ VERZE */
         @media (max-width: 768px) {
             .logo { font-size: 1.3rem; }
             .nav-links { display: none; position: absolute; top: 70px; right: 0; width: 100%; background: #fff; flex-direction: column; text-align: center; padding: 20px 0; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
-            
-            .dropdown-menu { 
-                position: static; 
-                display: none; 
-                box-shadow: none; 
-                border-top: none; 
-                background-color: #f9f9f9; 
-                padding-left: 0; 
-                min-width: 100%; 
-            }
-            
+            .dropdown-menu { position: static; display: none; box-shadow: none; background-color: #f9f9f9; min-width: 100%; }
             .dropdown-menu.show { display: block; }
-            .dropdown-menu li a { padding: 10px; font-size: 0.85rem; border-bottom: 1px solid #e0e0e0; }
             .hamburger { display: block; font-size: 1.8rem; cursor: pointer; color: var(--primary-color); }
             #menu-toggle:checked ~ .nav-links { display: flex; }
             .contact-wrapper { grid-template-columns: 1fr; }
-            
-            /* Mobilní úprava textu v Hero */
             .hero h1 { font-size: 2.2rem; }
-            .hero p { font-size: 1.1rem; padding: 0 10px; }
-
-            .counter-grid { grid-template-columns: 1fr; gap: 40px; }
-            .service-card { padding: 40px 25px; }
+            .hero p { font-size: 1.1rem; }
+            .counter-grid { grid-template-columns: 1fr; }
             .about-photos { grid-template-columns: 1fr; }
         }
     </style>
@@ -276,10 +181,7 @@
     </header>
 
     <section id="home" class="hero-video-container">
-        <video autoplay muted loop playsinline class="back-video" id="bg-video">
-            Váš prohlížeč nepodporuje video tag.
-        </video>
-
+        <video autoplay muted loop playsinline class="back-video" id="bg-video"></video>
         <div class="hero-overlay">
             <div class="container hero-content">
                 <h1>Vytiskli jsme už miliony knih, poradíme si i s tou vaší</h1>
@@ -292,22 +194,22 @@
     <section class="counter-bar">
         <div class="container">
             <div class="counter-grid">
-                <div class="counter-item">
+                <div class="counter-item reveal">
                     <i class="fas fa-industry"></i>
                     <h3>16 000 m²</h3>
                     <p>Výrobní plochy</p>
                 </div>
-                <div class="counter-item">
+                <div class="counter-item reveal delay-1">
                     <i class="fas fa-print"></i>
                     <h3>Miliony</h3>
                     <p>Knih vyrobených ročně</p>
                 </div>
-                <div class="counter-item">
+                <div class="counter-item reveal delay-2">
                     <i class="fas fa-certificate"></i>
                     <h3>LED UV</h3>
                     <p>První v ČR a SR</p>
                 </div>
-                <div class="counter-item">
+                <div class="counter-item reveal delay-3">
                     <i class="fas fa-calendar-alt"></i>
                     <h3>25+ Let</h3>
                     <p>Tradice na trhu</p>
@@ -318,76 +220,56 @@
 
     <section id="services" class="section-padding bg-light">
         <div class="container">
-            <h2 class="section-title">Proces výroby</h2>
+            <h2 class="section-title reveal">Proces výroby</h2>
             <div class="services-grid">
-                
-                <a href="predtisk.html" class="service-card" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('index-priprava.jpg'); display: block;">
+                <a href="predtisk.html" class="service-card reveal delay-1" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('index-priprava.jpg');">
                     <i class="fas fa-laptop-code icon"></i>
                     <h3>Předtisková příprava</h3>
-                    <p>Kompletní DTP studio, kontrola tiskových dat a osvit desek CTP pro bezchybný výsledek.</p>
+                    <p>Kompletní DTP studio, kontrola tiskových dat a osvit desek CTP.</p>
                 </a>
-
-                <a href="tisk.html" class="service-card" style="background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('index-ofset.jpg'); display: block;">
+                <a href="tisk.html" class="service-card reveal delay-2" style="background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('index-ofset.jpg');">
                     <i class="fas fa-print icon"></i>
                     <h3>Ofsetový tisk</h3>
-                    <p>Tiskové stroje Heidelberg vždy patřily a patří k absolutní špičce na světových trzích díky dokonalému zpracování a inovacím.</p>
+                    <p>Stroje Heidelberg patřící k absolutní špičce díky spolehlivosti.</p>
                 </a>
-
-                <a href="dokoncujici.html" class="service-card" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('index-dokonceni.jpg'); display: block;">
+                <a href="dokoncujici.html" class="service-card reveal delay-3" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('index-dokonceni.jpg');">
                     <i class="fas fa-book-open icon"></i>
                     <h3>Dokončující zpracování</h3>
-                    <p>Digitálně řízený systém pro lepenou vazbu V2 doplněný o snášecí linku nám umožňuje vysokou produkci.</p>
+                    <p>Digitálně řízený systém pro vazbu V2 a snášecí linku.</p>
                 </a>
-
-                <a href="logistika.html" class="service-card" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('index-logistika.jpg'); display: block;">
+                <a href="logistika.html" class="service-card reveal delay-4" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('index-logistika.jpg');">
                     <i class="fas fa-truck-moving icon"></i>
                     <h3>Logistika 24/7</h3>
-                    <p>Plně respektujeme potřeby partnerů v reálné obslužnosti až do požadavku na 7 dní v týdnu a 24 hodin denně.</p>
+                    <p>Obslužnost až do požadavku na 7 dní v týdnu a 24 hodin denně.</p>
                 </a>
-                
             </div>
         </div>
     </section>
 
     <section id="about" class="section-padding bg-light">
         <div class="container">
-            <h2 class="section-title">O společnosti</h2>
+            <h2 class="section-title reveal">O společnosti</h2>
             <div class="about-grid">
-                <div class="about-text">
-                    <p>Společnost TISK CENTRUM s.r.o. vznikla v roce 2001 s vizí vytvořit moderní polygrafický podnik, patřící ke špičce v Evropě a tak zabezpečit trvalou prosperitu a spokojenost zákazníků. Velký důraz klademe na kvalitní, moderní technologie, které zajistí rychlý a přesný tisk při dodržení nejvyššího standardu.</p>
-                    <p>Ty je možné dodržet jen při profesionálně odvedené práci zaměstnanců a neustálých investicích do moderních výrobních a informačních technologií. Velkou pozornost věnujeme zvyšování vzdělání a odborné úrovně zaměstnanců, zlepšování pracovního prostředí a ekologii.</p>
-                    <p>Naše společnost má v nově zabudovaném výrobním areálu uzavřený výrobním cyklus od grafické přípravy přes kvalitní tisk, náročné knihařské zpracování až po zušlechťovací a dokončovací technologie UV a hot press.</p>
-                    <p>Výrobní proces není přerušován a probíhá v non-stop režimu, který nabízí nejkratší čas zpracování při vysoké produkci, což oceňují především vydavatelé periodik. V neposlední řadě poskytujeme zákazníkům poradenství v oblasti polygrafie, potiskovaných materiálů a distribučního servisu. Věříme, že i Vás naše obchodní strategie a kvalitně zpracované výrobky osloví.</p>
+                <div class="about-text reveal">
+                    <p>Společnost TISK CENTRUM s.r.o. vznikla v roce 2001 s vizí vytvořit moderní polygrafický podnik patřící ke špičce v Evropě. Velký důraz klademe na moderní technologie a vzdělání zaměstnanců.</p>
+                    <p>Výrobní proces není přerušován a probíhá v non-stop režimu, který nabízí nejkratší čas zpracování při vysoké produkci.</p>
                 </div>
-
-                <div class="about-photos">
-                    <img src="o-nas-1.jpg" alt="Tiskárna interiér">
-                    <img src="o-nas-2.jpg" alt="Výrobní proces">
+                <div class="about-photos reveal delay-2">
+                    <img src="o-nas-1.jpg" alt="Tiskárna">
+                    <img src="o-nas-2.jpg" alt="Výroba">
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="section-padding">
+    <section id="contact" class="section-padding reveal">
         <div class="container">
             <h2 class="section-title">Kontakt</h2>
             <div class="contact-wrapper">
                 <div class="contact-info">
-                    <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <strong>Výroba a sídlo:</strong>
-                            <p>Modřická 645/62<br>664 48 Moravany u Brna</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-phone"></i>
-                        <p>+420 545 243 565</p>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-envelope"></i>
-                        <p>info@tiskcentrum.cz</p>
-                    </div>
+                    <div class="info-item"><i class="fas fa-map-marker-alt"></i><div><strong>Výroba a sídlo:</strong><p>Modřická 645/62, 664 48 Moravany</p></div></div>
+                    <div class="info-item"><i class="fas fa-phone"></i><p>+420 545 243 565</p></div>
+                    <div class="info-item"><i class="fas fa-envelope"></i><p>info@tiskcentrum.cz</p></div>
                 </div>
                 <form class="contact-form">
                     <input type="text" placeholder="Vaše jméno" required>
@@ -399,42 +281,40 @@
         </div>
     </section>
 
-    <footer>
-        <div class="container footer-content">
-            <p>&copy; 2026 TISK CENTRUM s.r.o. | Všechna práva vyhrazena.</p>
-        </div>
-    </footer>
+    <footer><div class="container"><p>&copy; 2026 TISK CENTRUM s.r.o. | Všechna práva vyhrazena.</p></div></footer>
 
     <script>
         function toggleMenu(event) {
-            if (event) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-            var submenu = document.getElementById("vyrobaSubmenu");
-            submenu.classList.toggle("show");
+            if (event) { event.preventDefault(); event.stopPropagation(); }
+            document.getElementById("vyrobaSubmenu").classList.toggle("show");
         }
-
         document.addEventListener("click", function(event) {
             var submenu = document.getElementById("vyrobaSubmenu");
-            var dropdown = document.querySelector(".dropdown");
-            if (submenu && submenu.classList.contains("show") && !dropdown.contains(event.target)) {
+            if (submenu && submenu.classList.contains("show") && !document.querySelector(".dropdown").contains(event.target)) {
                 submenu.classList.remove("show");
             }
         });
-    </script>
 
-    <script>
+        // REVEAL ANIMATION SCRIPT
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        window.addEventListener("load", reveal); // Spustit hned po načtení
+
+        // VIDEO SCRIPT
         document.addEventListener("DOMContentLoaded", function() {
             var video = document.getElementById('bg-video');
             var source = document.createElement('source');
-
-            if (window.innerWidth <= 768) {
-                source.src = 'video-mobile.mp4'; 
-            } else {
-                source.src = 'video.mp4'; 
-            }
-
+            source.src = (window.innerWidth <= 768) ? 'video-mobile.mp4' : 'video.mp4';
             source.type = 'video/mp4';
             video.appendChild(source);
             video.load(); 
