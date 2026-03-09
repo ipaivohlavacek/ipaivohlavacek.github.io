@@ -9,7 +9,7 @@
         /* --- ZÁKLADNÍ NASTAVENÍ --- */
         :root { --primary-color: #003366; --primary-light: #0055a5; --hover-color: #3498db; --secondary-color: #f9f9f9; --text-color: #333; --white: #fff; --transition: all 0.3s ease; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { line-height: 1.6; color: var(--text-color); }
+        body { line-height: 1.6; color: var(--text-color); overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -46,7 +46,6 @@
         }
 
         .dropdown-menu.show { display: block !important; }
-
         .dropdown-menu li { width: 100%; }
         .dropdown-menu li a { display: block; padding: 12px 20px; color: var(--text-color); font-weight: 500; font-size: 0.9rem; border-bottom: 1px solid #eee; text-transform: none; transition: var(--transition); }
         .dropdown-menu li a:hover { background-color: var(--secondary-color); color: var(--primary-color); padding-left: 25px; }
@@ -78,16 +77,27 @@
 
         footer { background: var(--primary-color); color: #fff; padding: 30px 0; text-align: center; margin-top: 80px; }
 
+        /* --- ANIMACE (REVEAL) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            visibility: hidden;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+
         /* MOBILNÍ VERZE */
         @media (max-width: 768px) {
             .logo { font-size: 1.3rem; } 
             .nav-links { display: none; position: absolute; top: 70px; right: 0; width: 100%; background: #fff; flex-direction: column; text-align: center; padding: 20px 0; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
             .hamburger { display: block; font-size: 1.8rem; cursor: pointer; color: var(--primary-color); }
             #menu-toggle:checked ~ .nav-links { display: flex; }
-            
             .dropdown-menu { position: static; display: none; box-shadow: none; border-top: none; background-color: #f9f9f9; padding-left: 0; min-width: 100%; }
             .dropdown-menu li a { padding: 10px; font-size: 0.85rem; border-bottom: 1px solid #e0e0e0; }
-
             .subpage-hero h1 { font-size: 2.5rem; }
             .about-text p { text-align: left; }
         }
@@ -126,24 +136,34 @@
 
     <section class="container">
         <div class="about-text">
-            <h3>Knihařské vazby (V1)</h3>
-            <p>Vazba V1 je dnes díky své jednoduchosti a také nízké ceně jednou z nejrozšířenějších vazeb. „Vazbu drátem" využívají časopisy, nabídkové katalogy, brožury atd.</p>
-            <p>Naše 6-ti stanicová linka Stitchmaster pracuje s maximálním výkonem 12 000 taktů za hodinu s možností zvýšit produkci až na dvojnásobek při dvojprodukčním vyřazení při montáži podkladů, do maximálního formátu 320 × 480 mm.</p>
-            <p>Naši produkci doplňuje další linka V1 Duplo s 20 pozicemi stohového snášeče. Produkce linky je až 5000 taktů za hodinu.</p>
+            <div class="reveal">
+                <h3>Knihařské vazby (V1)</h3>
+                <p>Vazba V1 je dnes díky své jednoduchosti a také nízké ceně jednou z nejrozšířenějších vazeb. „Vazbu drátem" využívají časopisy, nabídkové katalogy, brožury atd.</p>
+                <p>Naše 6-ti stanicová linka Stitchmaster pracuje s maximálním výkonem 12 000 taktů za hodinu s možností zvýšit produkci až na dvojnásobek při dvojprodukčním vyřazení při montáži podkladů, do maximálního formátu 320 × 480 mm.</p>
+                <p>Naši produkci doplňuje další linka V1 Duplo s 20 pozicemi stohového snášeče. Produkce linky je až 5000 taktů za hodinu.</p>
+            </div>
 
-            <h3>Skládací stroje</h3>
-            <p>Stroje Stahlfolder patří k nejprodávanějším zařízením v naší republice. Naše skládací linky patří ke kombinovaným, osm skládacích kapes doplňuje skládací nůž. Jeden ze základních parametrů těchto strojů je snižování nákladů na zakázku, jsou tedy kladeny nároky na zkrácení přípravných časů a zvyšování přesnosti a rychlosti zpracování. Takto vybavené stroje pracují až do 45 000 průchodů za hodinu, ve velké škále gramáží papíru.</p>
+            <div class="reveal">
+                <h3>Skládací stroje</h3>
+                <p>Stroje Stahlfolder patří k nejprodávanějším zařízením v naší republice. Naše skládací linky patří ke kombinovaným, osm skládacích kapes doplňuje skládací nůž. Jeden ze základních parametrů těchto strojů je snižování nákladů na zakázku, jsou tedy kladeny nároky na zkrácení přípravných časů a zvyšování přesnosti a rychlosti zpracování. Takto vybavené stroje pracují až do 45 000 průchodů za hodinu, ve velké škále gramáží papíru.</p>
+            </div>
 
-            <h3>Knihařské vazby (V2)</h3>
-            <p>Měkká vazba V2 si získala také velkou oblibu. Tato vazba pracuje na principu nanesení zahřátého lepidla na knižní hřbet a následnému přilisování papírové obálky.</p>
-            <p>Profesionální řešení pro lepenou vazbu představují stroje Horizon a Müller Martini. Digitálně řízený systém pro lepenou vazbu V2 doplněné o snášecí linku nám umožňují produkci 5000 taktů za hodinu. Automatizované ovládání s intuitivním přednastavováním formátů nám umožňuje rychlé přenastavení při změně formátu lepené publikace. Tloušťka zpracovaného hřbetu je až do 65 mm.</p>
+            <div class="reveal">
+                <h3>Knihařské vazby (V2)</h3>
+                <p>Měkká vazba V2 si získala také velkou oblibu. Tato vazba pracuje na principu nanesení zahřátého lepidla na knižní hřbet a následnému přilisování papírové obálky.</p>
+                <p>Profesionální řešení pro lepenou vazbu představují stroje Horizon a Müller Martini. Digitálně řízený systém pro lepenou vazbu V2 doplněné o snášecí linku nám umožňují produkci 5000 taktů za hodinu. Automatizované ovládání s intuitivním přednastavováním formátů nám umožňuje rychlé přenastavení při změně formátu lepené publikace. Tloušťka zpracovaného hřbetu je až do 65 mm.</p>
+            </div>
 
-            <h3>Speciální knihařské vazby</h3>
-            <p>Šití nití se používá hlavně u knih a luxusnějších katalogů. Vhodná pro silnější publikace, kde zlepšuje životnost produktu.</p>
+            <div class="reveal">
+                <h3>Speciální knihařské vazby</h3>
+                <p>Šití nití se používá hlavně u knih a luxusnějších katalogů. Vhodná pro silnější publikace, kde zlepšuje životnost produktu.</p>
+            </div>
 
-            <h3>Kalendářová twin vazba</h3>
-            <p>Tato kroužková vazba je vhodná pro kalendáře, jak stolní tak nástěnné. Zákazníci si tuto vazbu oblíbili i pro bloky a prezentační brožury.</p>
-            <p>Do skupiny našich vazacích strojů patří i vazače kovových hřbetů,</p>
+            <div class="reveal">
+                <h3>Kalendářová twin vazba</h3>
+                <p>Tato kroužková vazba je vhodná pro kalendáře, jak stolní tak nástěnné. Zákazníci si tuto vazbu oblíbili i pro bloky a prezentační brožury.</p>
+                <p>Do skupiny našich vazacích strojů patří i vazače kovových hřbetů,</p>
+            </div>
         </div>
     </section>
 
@@ -168,6 +188,21 @@
                 submenu.classList.remove("show");
             }
         });
+
+        // REVEAL ANIMATION SCRIPT
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        window.addEventListener("load", reveal);
     </script>
 </body>
 </html>
