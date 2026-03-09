@@ -6,7 +6,6 @@
     <title>Logistika 24/7 | TISKCENTRUM</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* --- ZÁKLADNÍ NASTAVENÍ --- */
         :root { 
             --primary-color: #003366; 
             --primary-light: #0055a5; 
@@ -55,7 +54,6 @@
         }
 
         .dropdown-menu.show { display: block !important; }
-
         .dropdown-menu li { width: 100%; }
         .dropdown-menu li a { display: block; padding: 12px 20px; color: var(--text-color); font-weight: 500; font-size: 0.9rem; border-bottom: 1px solid #eee; text-transform: none; transition: var(--transition); }
         .dropdown-menu li a:hover { background-color: var(--secondary-color); color: var(--primary-color); padding-left: 25px; }
@@ -75,30 +73,14 @@
             color: var(--white); 
             margin-bottom: 50px; 
         }
-
-        .subpage-hero h1 { 
-            font-size: 3.5rem; 
-            font-weight: 800; 
-            text-shadow: 2px 2px 15px rgba(0,0,0,0.6);
-        }
+        .subpage-hero h1 { font-size: 3.5rem; font-weight: 800; text-shadow: 2px 2px 15px rgba(0,0,0,0.6); }
         
-        /* Úprava textů */
         .about-text p { margin-bottom: 20px; font-size: 1.2rem; text-align: justify; }
 
-        /* --- ANIMACE (REVEAL) --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            visibility: hidden;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-            visibility: visible;
-        }
+        /* --- ANIMACE --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; visibility: hidden; }
+        .reveal.active { opacity: 1; transform: translateY(0); visibility: visible; }
 
-        /* --- PATIČKA --- */
         footer { background: var(--primary-color); color: #fff; padding: 30px 0; text-align: center; margin-top: 80px; }
 
         /* MOBILNÍ VERZE */
@@ -107,11 +89,8 @@
             .nav-links { display: none; position: absolute; top: 70px; right: 0; width: 100%; background: #fff; flex-direction: column; text-align: center; padding: 20px 0; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
             .hamburger { display: block; font-size: 1.8rem; cursor: pointer; color: var(--primary-color); }
             #menu-toggle:checked ~ .nav-links { display: flex; }
-            
             .dropdown-menu { position: static; display: none; box-shadow: none; border-top: none; background-color: #f9f9f9; padding-left: 0; min-width: 100%; }
-            .dropdown-menu li a { padding: 10px; font-size: 0.85rem; border-bottom: 1px solid #e0e0e0; }
-
-            .subpage-hero h1 { font-size: 2.5rem; }
+            .subpage-hero h1 { font-size: 2.2rem; padding: 0 20px; }
             .about-text p { text-align: left; }
         }
     </style>
@@ -167,8 +146,10 @@
 
     <script>
         function toggleMenu(event) {
-            event.preventDefault();  
-            event.stopPropagation(); 
+            if (event) {
+                event.preventDefault();  
+                event.stopPropagation(); 
+            }
             var submenu = document.getElementById("vyrobaSubmenu");
             submenu.classList.toggle("show");
         }
@@ -176,12 +157,11 @@
         document.addEventListener("click", function(event) {
             var submenu = document.getElementById("vyrobaSubmenu");
             var dropdown = document.querySelector(".dropdown");
-            if (submenu && submenu.classList.contains("show") && !dropdown.contains(event.target)) {
+            if (submenu && submenu.classList.contains("show") && dropdown && !dropdown.contains(event.target)) {
                 submenu.classList.remove("show");
             }
         });
 
-        // REVEAL ANIMATION SCRIPT
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -196,6 +176,5 @@
         window.addEventListener("scroll", reveal);
         window.addEventListener("load", reveal);
     </script>
-
 </body>
 </html>
