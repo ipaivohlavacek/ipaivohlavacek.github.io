@@ -52,33 +52,37 @@
             z-index: 9999; 
         }
         
-        /* TOTO PRAVIDLO PLATÍ POUZE PRO POČÍTAČE (odstraní konflikt na mobilu) */
         @media (min-width: 769px) {
             .dropdown:hover .dropdown-menu { display: block; }
         }
 
-        /* Třída ovládaná JavaScriptem s absolutní prioritou */
         .dropdown-menu.show { display: block !important; }
 
         .dropdown-menu li { width: 100%; }
         .dropdown-menu li a { display: block; padding: 12px 20px; color: var(--text-color); font-weight: 500; font-size: 0.9rem; border-bottom: 1px solid #eee; text-transform: none; transition: var(--transition); }
         .dropdown-menu li a:hover { background-color: var(--secondary-color); color: var(--primary-color); padding-left: 25px; }
 
-        /* --- SUBPAGE HERO --- */
-        .subpage-hero {
-            height: 40vh;
-            background: linear-gradient(45deg, var(--primary-color), var(--primary-light));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-            margin-bottom: 50px;
+        /* --- SUBPAGE HERO (POZADÍ S OBRÁZKEM) --- */
+        .subpage-hero { 
+            height: 40vh; 
+            min-height: 300px;
+            /* Nastavení predtisk1.jpg jako pozadí s filtrem */
+            background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url('predtisk1.jpg');
+            background-size: cover; 
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            color: var(--white); 
+            margin-bottom: 50px; 
         }
 
-        .subpage-hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
+        .subpage-hero h1 { 
+            font-size: 3.5rem; 
+            font-weight: 800; 
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.6);
         }
 
         /* --- TEXTOVÝ OBSAH --- */
@@ -95,7 +99,6 @@
             .hamburger { display: block; font-size: 1.8rem; cursor: pointer; color: var(--primary-color); }
             #menu-toggle:checked ~ .nav-links { display: flex; }
             
-            /* Mobilní úprava dropdownu - defaultně skryto */
             .dropdown-menu { position: static; display: none; box-shadow: none; border-top: none; background-color: #f9f9f9; padding-left: 0; min-width: 100%; }
             .dropdown-menu li a { padding: 10px; font-size: 0.85rem; border-bottom: 1px solid #e0e0e0; }
 
@@ -167,13 +170,12 @@
     <script>
         function toggleMenu(event) {
             event.preventDefault();  
-            event.stopPropagation(); // Zabrání nechtěnému dvojitému kliknutí na mobilech
+            event.stopPropagation(); 
             
             var submenu = document.getElementById("vyrobaSubmenu");
             submenu.classList.toggle("show");
         }
 
-        // Kliknutím kamkoliv jinam se menu zavře
         document.addEventListener("click", function(event) {
             var submenu = document.getElementById("vyrobaSubmenu");
             var dropdown = document.querySelector(".dropdown");
