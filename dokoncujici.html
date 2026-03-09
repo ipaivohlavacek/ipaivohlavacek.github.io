@@ -41,12 +41,10 @@
             z-index: 9999; 
         }
 
-        /* Otevírání najetím pro PC */
         @media (min-width: 769px) {
             .dropdown:hover .dropdown-menu { display: block; }
         }
 
-        /* Třída pro JS s prioritou */
         .dropdown-menu.show { display: block !important; }
 
         .dropdown-menu li { width: 100%; }
@@ -82,7 +80,7 @@
 
         /* MOBILNÍ VERZE */
         @media (max-width: 768px) {
-            .logo { font-size: 1.3rem; } /* SPRÁVNÁ VELIKOST PRO MOBIL */
+            .logo { font-size: 1.3rem; } 
             .nav-links { display: none; position: absolute; top: 70px; right: 0; width: 100%; background: #fff; flex-direction: column; text-align: center; padding: 20px 0; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
             .hamburger { display: block; font-size: 1.8rem; cursor: pointer; color: var(--primary-color); }
             #menu-toggle:checked ~ .nav-links { display: flex; }
@@ -102,8 +100,7 @@
             <nav>
                 <input type="checkbox" id="menu-toggle">
                 <label for="menu-toggle" class="hamburger"><i class="fas fa-bars"></i></label>
-                
-                    
+                <ul class="nav-links">
                     <li class="dropdown">
                         <a href="javascript:void(0)" onclick="toggleMenu(event)">Výroba <i class="fas fa-caret-down"></i></a>
                         <ul class="dropdown-menu" id="vyrobaSubmenu">
@@ -111,9 +108,9 @@
                             <li><a href="predtisk.html">Předtisková příprava</a></li>
                             <li><a href="dokoncujici.html">Dokončující zpracování tiskovin</a></li>
                             <li><a href="zuslechteni.html">Zušlechťovací technologie</a></li>
+                            <li><a href="logistika.html">Logistika 24/7</a></li>
                         </ul>
                     </li>
-
                     <li><a href="index.html#about">O nás</a></li>
                     <li><a href="index.html#contact">Kontakt</a></li>
                 </ul>
@@ -160,7 +157,6 @@
         function toggleMenu(event) {
             event.preventDefault();  
             event.stopPropagation(); 
-            
             var submenu = document.getElementById("vyrobaSubmenu");
             submenu.classList.toggle("show");
         }
@@ -168,7 +164,6 @@
         document.addEventListener("click", function(event) {
             var submenu = document.getElementById("vyrobaSubmenu");
             var dropdown = document.querySelector(".dropdown");
-            
             if (submenu && submenu.classList.contains("show") && !dropdown.contains(event.target)) {
                 submenu.classList.remove("show");
             }
@@ -176,4 +171,3 @@
     </script>
 </body>
 </html>
-
