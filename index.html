@@ -48,7 +48,7 @@
             cursor: pointer; 
             text-transform: uppercase; 
             letter-spacing: 1px;
-            margin-top: 30px; /* Zvětšený odstup od textu nad ním */
+            /* Odstraněn pevný margin-top, zarovnání řeší flexbox */
         }
         
         .btn:hover { 
@@ -80,23 +80,47 @@
 
         #menu-toggle, .hamburger { display: none; }
 
-        /* --- HERO SEKCE --- */
-        .hero-video-container { position: relative; height: 75vh; overflow: hidden; display: flex; align-items: center; }
+        /* --- HERO SEKCE (PŘEDĚLANO PRO DOKONALÉ VYCENTROVÁNÍ) --- */
+        .hero-video-container { 
+            position: relative; 
+            height: 75vh; 
+            overflow: hidden; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+        }
         .back-video { position: absolute; top: 50%; left: 50%; width: 100%; height: 100%; object-fit: cover; transform: translate(-50%, -50%); z-index: -1; }
-        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 30, 60, 0.6); display: flex; align-items: center; justify-content: center; }
+        .hero-overlay { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(0, 30, 60, 0.6); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
         
+        /* Hlavní kontejner obsahu s Flexboxem */
         .hero-content { 
             color: var(--white); 
             text-align: center; 
             width: 100%; 
+            height: 100%; /* Roztáhnout na celou výšku overlay */
             z-index: 1; 
             display: flex;
             flex-direction: column;
-            align-items: center; /* Horizontální vycentrování obsahu */
+            justify-content: center; /* Svislé vycentrování celého bloku */
+            align-items: center; /* Vodorovné vycentrování */
+            padding: 40px 0; /* Bezpečný padding nahoře a dole */
         }
         
-        .hero h1 { font-size: 4rem; margin-bottom: 25px; font-weight: 800; line-height: 1.2; }
-        .hero p { font-size: 1.3rem; margin-bottom: 20px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        /* Nadpis a text mají vlastní gap, aby držely u sebe */
+        .hero-content h1 { font-size: 4rem; font-weight: 800; line-height: 1.2; margin-bottom: 25px; }
+        .hero-content p { font-size: 1.3rem; max-width: 800px; margin-left: auto; margin-right: auto; margin-bottom: 0; }
+        
+        /* Tlačítko se pak přirozeně umístí do středu zbývajícího prostoru */
         
         /* --- STATISTIKY --- */
         .counter-bar { background-color: var(--primary-color); color: var(--white); padding: 50px 0; position: relative; z-index: 10; }
@@ -157,9 +181,10 @@
             .hamburger { display: block; font-size: 1.8rem; cursor: pointer; color: var(--primary-color); }
             #menu-toggle:checked ~ .nav-links { display: flex; }
             .contact-wrapper { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 2.2rem; }
-            .hero p { font-size: 1.1rem; }
-            .btn { margin-top: 20px; } /* Mírně menší odstup na mobilu, aby se to vešlo na displej */
+            .hero-content { justify-content: center; padding: 20px; } /* Vycentrování na mobilu */
+            .hero h1 { font-size: 2.2rem; margin-bottom: 15px; }
+            .hero p { font-size: 1.1rem; margin-bottom: 0; }
+            /* Tlačítko se na mobilu také vycentruje do zbývajícího prostoru */
             .counter-grid { grid-template-columns: 1fr; }
             .about-photos { grid-template-columns: 1fr; }
         }
@@ -195,9 +220,11 @@
         <video autoplay muted loop playsinline class="back-video" id="bg-video"></video>
         <div class="hero-overlay">
             <div class="container hero-content">
-                <h1>Vytiskli jsme už miliony knih, poradíme si i s tou vaší</h1>
-                <p>Jsme moderní tiskárna s revoluční technologií LED UV. Jako první ve střední a východní Evropě nabízíme tisk v té nejvyšší kvalitě s důrazem na ekologii.</p>
-                <a href="#contact" class="btn">Poptávka</a>
+                <div class="hero-text-block"> <h1>Vytiskli jsme už miliony knih, poradíme si i s tou vaší</h1>
+                    <p>Jsme moderní tiskárna s revoluční technologií LED UV. Jako první ve střední a východní Evropě nabízíme tisk v té nejvyšší kvalitě s důrazem na ekologii.</p>
+                </div>
+                <div class="hero-btn-block"> <a href="#contact" class="btn">Poptávka</a>
+                </div>
             </div>
         </div>
     </section>
@@ -319,7 +346,7 @@
             }
         }
         window.addEventListener("scroll", reveal);
-        window.addEventListener("load", reveal);
+        window.addEventListener("load", reveal); // Spustit hned po načtení
 
         // VIDEO SCRIPT
         document.addEventListener("DOMContentLoaded", function() {
