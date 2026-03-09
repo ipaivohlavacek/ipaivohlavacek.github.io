@@ -27,7 +27,8 @@
         .nav-links > li > a:hover { color: var(--hover-color); }
         #menu-toggle, .hamburger { display: none; }
 
-        /* --- DROPDOWN MENU - HOVER FUNKCE --- */
+        /* --- DROPDOWN MENU --- */
+        .dropdown { position: relative; }
         .dropdown-menu { 
             display: none; 
             position: absolute; 
@@ -39,11 +40,14 @@
             border-top: 3px solid var(--hover-color); 
             z-index: 9999; 
         }
-        
-        .nav-links > li.dropdown:hover > .dropdown-menu,
-        .nav-links > li.dropdown:focus-within > .dropdown-menu {
-            display: block;
+
+        /* TOTO PRAVIDLO PLATÍ POUZE PRO POČÍTAČE (odstraní konflikt na mobilu) */
+        @media (min-width: 769px) {
+            .dropdown:hover .dropdown-menu { display: block; }
         }
+
+        /* Třída ovládaná JavaScriptem s absolutní prioritou */
+        .dropdown-menu.show { display: block !important; }
 
         .dropdown-menu li { width: 100%; }
         .dropdown-menu li a { display: block; padding: 12px 20px; color: var(--text-color); font-weight: 500; font-size: 0.9rem; border-bottom: 1px solid #eee; text-transform: none; transition: var(--transition); }
@@ -82,9 +86,8 @@
             .hamburger { display: block; font-size: 1.8rem; cursor: pointer; color: var(--primary-color); }
             #menu-toggle:checked ~ .nav-links { display: flex; }
             
-            /* OPRAVENÉ MOBILNÍ MENU - defaultně skryté */
+            /* Mobilní úprava dropdownu */
             .dropdown-menu { position: static; display: none; box-shadow: none; border-top: none; background-color: #f9f9f9; padding-left: 0; min-width: 100%; }
-            .dropdown-menu.show { display: block; }
             .dropdown-menu li a { padding: 10px; font-size: 0.85rem; border-bottom: 1px solid #e0e0e0; }
 
             .subpage-hero h1 { font-size: 2.5rem; }
@@ -155,19 +158,20 @@
     </footer>
 
     <script>
-        // Funkce pro otevření/zavření po kliknutí na "Výroba"
         function toggleMenu(event) {
-            event.preventDefault();  // Zabrání poskočení stránky nahoru
-            event.stopPropagation(); // ZAKÁŽE probublávání kliknutí (klíčová oprava)
+            event.preventDefault();  
+            event.stopPropagation(); // Zabrání nechtěnému dvojitému kliknutí na mobilech
             
             var submenu = document.getElementById("vyrobaSubmenu");
             submenu.classList.toggle("show");
         }
 
-        // Spolehlivé zavření menu při kliknutí kamkoliv jinam na stránce
-        document.addEventListener("click", function() {
+        // Kliknutím kamkoliv jinam se menu zavře
+        document.addEventListener("click", function(event) {
             var submenu = document.getElementById("vyrobaSubmenu");
-            if (submenu && submenu.classList.contains("show")) {
+            var dropdown = document.querySelector(".dropdown");
+            
+            if (submenu && submenu.classList.contains("show") && !dropdown.contains(event.target)) {
                 submenu.classList.remove("show");
             }
         });
