@@ -41,12 +41,12 @@
             z-index: 9999; 
         }
 
-        /* TOTO PRAVIDLO PLATÍ POUZE PRO POČÍTAČE (odstraní konflikt na mobilu) */
+        /* Otevírání najetím pro PC */
         @media (min-width: 769px) {
             .dropdown:hover .dropdown-menu { display: block; }
         }
 
-        /* Třída ovládaná JavaScriptem s absolutní prioritou */
+        /* Třída pro JS s prioritou */
         .dropdown-menu.show { display: block !important; }
 
         .dropdown-menu li { width: 100%; }
@@ -82,11 +82,11 @@
 
         /* MOBILNÍ VERZE */
         @media (max-width: 768px) {
+            .logo { font-size: 1.3rem; } /* SPRÁVNÁ VELIKOST PRO MOBIL */
             .nav-links { display: none; position: absolute; top: 70px; right: 0; width: 100%; background: #fff; flex-direction: column; text-align: center; padding: 20px 0; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
             .hamburger { display: block; font-size: 1.8rem; cursor: pointer; color: var(--primary-color); }
             #menu-toggle:checked ~ .nav-links { display: flex; }
             
-            /* Mobilní úprava dropdownu */
             .dropdown-menu { position: static; display: none; box-shadow: none; border-top: none; background-color: #f9f9f9; padding-left: 0; min-width: 100%; }
             .dropdown-menu li a { padding: 10px; font-size: 0.85rem; border-bottom: 1px solid #e0e0e0; }
 
@@ -160,13 +160,12 @@
     <script>
         function toggleMenu(event) {
             event.preventDefault();  
-            event.stopPropagation(); // Zabrání nechtěnému dvojitému kliknutí na mobilech
+            event.stopPropagation(); 
             
             var submenu = document.getElementById("vyrobaSubmenu");
             submenu.classList.toggle("show");
         }
 
-        // Kliknutím kamkoliv jinam se menu zavře
         document.addEventListener("click", function(event) {
             var submenu = document.getElementById("vyrobaSubmenu");
             var dropdown = document.querySelector(".dropdown");
