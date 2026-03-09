@@ -137,6 +137,21 @@
         /* --- OSTATNÍ SEKCE --- */
         .about-grid { display: block; text-align: center; max-width: 1000px; margin: 0 auto; }
         .about-text p { margin-bottom: 20px; font-size: 1.1rem; text-align: justify; }
+
+        /* NOVÁ MŘÍŽKA PRO FOTKY O SPOLEČNOSTI */
+        .about-photos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .about-photos img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            object-fit: cover;
+        }
         
         .bg-light { background: var(--secondary-color); }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
@@ -207,6 +222,9 @@
             .hero h1 { font-size: 2.5rem; }
             .counter-grid { grid-template-columns: 1fr; gap: 40px; }
             .service-card { padding: 40px 25px; }
+
+            /* Fotky pod sebou na mobilu */
+            .about-photos { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -319,6 +337,11 @@
                     <p>Ty je možné dodržet jen při profesionálně odvedené práci zaměstnanců a neustálých investicích do moderních výrobních a informačních technologií. Velkou pozornost věnujeme zvyšování vzdělání a odborné úrovně zaměstnanců, zlepšování pracovního prostředí a ekologii.</p>
                     <p>Naše společnost má v nově zabudovaném výrobním areálu uzavřený výrobním cyklus od grafické přípravy přes kvalitní tisk, náročné knihařské zpracování až po zušlechťovací a dokončovací technologie UV a hot press.</p>
                     <p>Výrobní proces není přerušován a probíhá v non-stop režimu, který nabízí nejkratší čas zpracování při vysoké produkci, což oceňují především vydavatelé periodik. V neposlední řadě poskytujeme zákazníkům poradenství v oblasti polygrafie, potiskovaných materiálů a distribučního servisu. Věříme, že i Vás naše obchodní strategie a kvalitně zpracované výrobky osloví.</p>
+                </div>
+
+                <div class="about-photos">
+                    <img src="o-nas-1.jpg" alt="Tiskárna interiér">
+                    <img src="o-nas-2.jpg" alt="Výrobní proces">
                 </div>
             </div>
         </div>
