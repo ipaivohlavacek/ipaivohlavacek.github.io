@@ -6,73 +6,99 @@
     <title>Logistika 24/7 | TISKCENTRUM</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { 
+        /* --- ZÁKLADNÍ NASTAVENÍ --- */
+        :root {
             --primary-color: #003366; 
-            --hover-color: #3498db; 
-            --text-color: #333; 
-            --white: #fff; 
+            --primary-light: #0055a5;
+            --hover-color: #3498db;   
+            --secondary-color: #f9f9f9;
+            --text-color: #333;
+            --white: #fff;
+            --transition: all 0.3s ease;
         }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { line-height: 1.6; color: var(--text-color); }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { line-height: 1.6; color: var(--text-color); overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
         
-        .container { 
-            max-width: 1100px; 
-            margin: 0 auto; 
-            padding: 0 20px; /* Toto vytvoří mezeru na PC */
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section-padding { padding: 80px 0; }
         
         /* --- HLAVIČKA --- */
         header { background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
         .header-content { display: flex; justify-content: space-between; align-items: center; height: 70px; }
-        .logo { font-size: 1.6rem; font-weight: 800; color: var(--primary-color); text-transform: uppercase; }
-        
-        .nav-links { display: flex; gap: 25px; list-style: none; }
-        .nav-links a { font-weight: 600; color: var(--primary-color); text-transform: uppercase; font-size: 0.9rem; }
+        .logo { font-size: 1.8rem; font-weight: 800; color: var(--primary-color); text-transform: uppercase; letter-spacing: 2px; }
 
-        /* DROPDOWN */
+        /* NAVIGACE */
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links > li { position: relative; }
+        .nav-links > li > a { font-weight: 600; color: var(--primary-color); transition: var(--transition); font-size: 0.95rem; text-transform: uppercase; padding: 15px 0; display: block; }
+        .nav-links > li > a:hover { color: var(--hover-color); }
+        #menu-toggle, .hamburger { display: none; }
+        
+        /* --- DROPDOWN MENU --- */
         .dropdown { position: relative; }
         .dropdown-menu { 
-            display: none; position: absolute; top: 100%; left: 0; 
-            background: var(--white); box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
-            min-width: 250px; border-top: 3px solid var(--hover-color);
+            display: none; 
+            position: absolute; 
+            top: 100%; 
+            left: 0; 
+            background-color: var(--white); 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+            min-width: 280px; 
+            border-top: 3px solid var(--hover-color); 
+            z-index: 9999; 
         }
-        .dropdown:hover .dropdown-menu { display: block; }
-        .dropdown-menu li { list-style: none; border-bottom: 1px solid #eee; }
-        .dropdown-menu a { display: block; padding: 10px 20px; text-transform: none; color: var(--text-color); }
+        
+        @media (min-width: 769px) {
+            .dropdown:hover .dropdown-menu { display: block; }
+        }
+        .dropdown-menu.show { display: block !important; }
+        .dropdown-menu li a { display: block; padding: 12px 20px; color: var(--text-color); font-weight: 500; font-size: 0.9rem; border-bottom: 1px solid #eee; text-transform: none; transition: var(--transition); }
+        .dropdown-menu li a:hover { background-color: var(--secondary-color); color: var(--primary-color); padding-left: 25px; }
 
-        /* --- HERO --- */
+        /* --- SUBPAGE HERO --- */
         .subpage-hero { 
-            height: 35vh; min-height: 250px;
-            background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url('logistika1.jpg') center/cover;
-            display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); 
+            height: 40vh; 
+            min-height: 300px;
+            background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)), url('logistika1.jpg');
+            background-size: cover; 
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center; 
+            color: var(--white); 
+            margin-bottom: 50px; 
         }
-        .subpage-hero h1 { font-size: 3rem; font-weight: 800; }
+        .subpage-hero h1 { font-size: 3.5rem; font-weight: 800; text-shadow: 2px 2px 15px rgba(0,0,0,0.6); }
 
-        /* --- OBSAH --- */
-        .logistika-content { padding: 60px 0; }
-        .about-text p { margin-bottom: 25px; font-size: 1.2rem; text-align: justify; }
+        /* --- TEXTOVÝ OBSAH --- */
+        .about-text p { margin-bottom: 20px; font-size: 1.1rem; text-align: justify; }
+        
+        /* --- ANIMACE (REVEAL) --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; visibility: hidden; }
+        .reveal.active { opacity: 1; transform: translateY(0); visibility: visible; }
 
-        /* --- ANIMACE --- */
-        .reveal { opacity: 0; transform: translateY(20px); transition: 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        /* --- PATIČKA --- */
+        footer { background: var(--primary-color); color: #fff; padding: 30px 0; text-align: center; margin-top: 80px; }
 
-        footer { background: var(--primary-color); color: #fff; padding: 40px 0; text-align: center; margin-top: 40px; }
-
-        /* --- MOBILNÍ VERZE --- */
+        /* MOBILNÍ VERZE */
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .subpage-hero h1 { font-size: 2.2rem; padding: 0 15px; }
-            
-            /* TADY JE OPRAVA PRO MOBILY */
+            .logo { font-size: 1.3rem; }
+            .nav-links { display: none; position: absolute; top: 70px; right: 0; width: 100%; background: #fff; flex-direction: column; text-align: center; padding: 20px 0; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
+            .hamburger { display: block; font-size: 1.8rem; cursor: pointer; color: var(--primary-color); }
+            #menu-toggle:checked ~ .nav-links { display: flex; }
+            .dropdown-menu { position: static; display: none; box-shadow: none; border-top: none; background-color: #f9f9f9; padding-left: 0; min-width: 100%; }
+            .subpage-hero h1 { font-size: 2.5rem; }
+
+            /* OPRAVA ODSZENÍ TEXTU NA MOBILU */
             .about-text { 
-                padding: 0 25px !important; /* Vynucená mezera zleva i zprava */
+                padding: 0 25px !important; 
             }
-            .about-text p { 
-                text-align: left; 
-                font-size: 1.1rem;
-            }
+            .about-text p { text-align: left; }
         }
     </style>
 </head>
@@ -82,13 +108,15 @@
         <div class="container header-content">
             <a href="index.html" class="logo">TISKCENTRUM</a>
             <nav>
+                <input type="checkbox" id="menu-toggle">
+                <label for="menu-toggle" class="hamburger"><i class="fas fa-bars"></i></label>
                 <ul class="nav-links">
                     <li class="dropdown">
-                        <a href="#">Výroba <i class="fas fa-caret-down"></i></a>
-                        <ul class="dropdown-menu">
+                        <a href="javascript:void(0)" onclick="toggleMenu(event)">Výroba <i class="fas fa-caret-down"></i></a>
+                        <ul class="dropdown-menu" id="vyrobaSubmenu">
                             <li><a href="tisk.html">Moderní tiskové stroje</a></li>
                             <li><a href="predtisk.html">Předtisková příprava</a></li>
-                            <li><a href="dokoncujici.html">Dokončující zpracování</a></li>
+                            <li><a href="dokoncujici.html">Dokončující zpracování tiskovin</a></li>
                             <li><a href="zuslechteni.html">Zušlechťovací technologie</a></li>
                             <li><a href="logistika.html">Logistika 24/7</a></li>
                         </ul>
@@ -106,31 +134,45 @@
         </div>
     </section>
 
-    <main class="container logistika-content">
+    <main class="container">
         <div class="about-text">
             <div class="reveal">
                 <p>Funkční logistika je nezbytností jak z důvodu zvýšení efektivnosti výroby, tak i distribuce a prodeje.</p>
             </div>
-            <div class="reveal">
+            <div class="reveal" style="transition-delay: 0.2s;">
                 <p>Plně respektuje potřeby jednotlivých obchodních partnerů v reálné obslužnosti až do požadavku na 7 dní v týdnu a 24 hodin denně.</p>
             </div>
         </div>
     </main>
 
     <footer>
-        <div class="container">
+        <div class="container footer-content">
             <p>&copy; 2026 TISK CENTRUM s.r.o. | Všechna práva vyhrazena.</p>
         </div>
     </footer>
 
     <script>
-        // Reveal animace
+        function toggleMenu(event) {
+            event.preventDefault();  
+            event.stopPropagation(); 
+            var submenu = document.getElementById("vyrobaSubmenu");
+            submenu.classList.toggle("show");
+        }
+
+        document.addEventListener("click", function(event) {
+            var submenu = document.getElementById("vyrobaSubmenu");
+            var dropdown = document.querySelector(".dropdown");
+            if (submenu && submenu.classList.contains("show") && !dropdown.contains(event.target)) {
+                submenu.classList.remove("show");
+            }
+        });
+
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 50) {
+                if (elementTop < windowHeight - 100) {
                     reveals[i].classList.add("active");
                 }
             }
