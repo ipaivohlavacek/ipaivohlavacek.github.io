@@ -35,6 +35,7 @@
         .nav-links > li { position: relative; }
         .nav-links > li > a { font-weight: 600; color: var(--primary-color); transition: var(--transition); font-size: 0.95rem; text-transform: uppercase; padding: 15px 0; display: block; }
         .nav-links > li > a:hover { color: var(--hover-color); }
+        
         #menu-toggle, .hamburger { display: none; }
         
         /* --- DROPDOWN MENU --- */
@@ -75,30 +76,42 @@
         }
         .subpage-hero h1 { font-size: 3.5rem; font-weight: 800; text-shadow: 2px 2px 15px rgba(0,0,0,0.6); }
 
-        /* --- TEXTOVÝ OBSAH --- */
-        .about-text p { margin-bottom: 20px; font-size: 1.1rem; text-align: justify; }
-        
-        /* --- ANIMACE (REVEAL) --- */
+        /* --- ANIMACE --- */
         .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; visibility: hidden; }
         .reveal.active { opacity: 1; transform: translateY(0); visibility: visible; }
 
         /* --- PATIČKA --- */
         footer { background: var(--primary-color); color: #fff; padding: 30px 0; text-align: center; margin-top: 80px; }
 
-        /* MOBILNÍ VERZE */
+        /* MOBILNÍ VERZE - OPRAVENO */
         @media (max-width: 768px) {
-            .logo { font-size: 1.3rem; }
-            .nav-links { display: none; position: absolute; top: 70px; right: 0; width: 100%; background: #fff; flex-direction: column; text-align: center; padding: 20px 0; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
+            .logo { font-size: 1.3rem; } /* Oprava velikosti loga */
+            
             .hamburger { display: block; font-size: 1.8rem; cursor: pointer; color: var(--primary-color); }
-            #menu-toggle:checked ~ .nav-links { display: flex; }
+            
+            .nav-links { 
+                display: none; 
+                position: absolute; 
+                top: 70px; 
+                right: 0; 
+                width: 100%; 
+                background: #fff; 
+                flex-direction: column; 
+                text-align: center; 
+                padding: 20px 0; 
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1); 
+            }
+            
+            #menu-toggle:checked ~ .nav-links { display: flex; } /* Zobrazení menu po kliknutí */
+            
             .dropdown-menu { position: static; display: none; box-shadow: none; border-top: none; background-color: #f9f9f9; padding-left: 0; min-width: 100%; }
-            .subpage-hero h1 { font-size: 2.5rem; }
+            .dropdown-menu.show { display: block !important; }
+
+            .subpage-hero h1 { font-size: 2.2rem; }
 
             /* OPRAVA ODSZENÍ TEXTU NA MOBILU */
-            .about-text { 
-                padding: 0 25px !important; 
-            }
-            .about-text p { text-align: left; }
+            .about-text { padding: 0 25px !important; }
+            .about-text p { text-align: left; margin-bottom: 20px; font-size: 1.1rem; }
         }
     </style>
 </head>
