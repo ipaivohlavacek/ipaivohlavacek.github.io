@@ -5,9 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zušlechťovací technologie | TISKCENTRUM</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         /* --- ZÁKLADNÍ NASTAVENÍ --- */
-        :root { --primary-color: #003366; --primary-light: #0055a5; --hover-color: #3498db; --secondary-color: #f9f9f9; --text-color: #333; --white: #fff; --transition: all 0.3s ease; }
+        :root { 
+            --primary-color: #003366; 
+            --primary-light: #0055a5; 
+            --hover-color: #3498db; 
+            --secondary-color: #f9f9f9; 
+            --text-color: #333; 
+            --white: #fff; 
+            --transition: all 0.3s ease; 
+        }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { line-height: 1.6; color: var(--text-color); }
         a { text-decoration: none; color: inherit; }
@@ -15,7 +25,7 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         .section-padding { padding: 80px 0; }
         
-        /* HLAVIČKA */
+        /* --- HLAVIČKA --- */
         header { background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
         .header-content { display: flex; justify-content: space-between; align-items: center; height: 70px; }
         .logo { font-size: 1.8rem; font-weight: 800; color: var(--primary-color); text-transform: uppercase; letter-spacing: 2px; }
@@ -28,6 +38,7 @@
         #menu-toggle, .hamburger { display: none; }
 
         /* --- DROPDOWN MENU --- */
+        .dropdown { position: relative; }
         .dropdown-menu { 
             display: none; 
             position: absolute; 
@@ -40,13 +51,19 @@
             z-index: 9999; 
         }
         
-        .dropdown-menu.show { display: block; }
+        /* TOTO PRAVIDLO PLATÍ POUZE PRO POČÍTAČE */
+        @media (min-width: 769px) {
+            .dropdown:hover .dropdown-menu { display: block; }
+        }
+
+        /* Třída ovládaná JavaScriptem s absolutní prioritou */
+        .dropdown-menu.show { display: block !important; }
 
         .dropdown-menu li { width: 100%; }
-        .dropdown-menu li a { display: block; padding: 12px 20px; color: var(--text-color); font-weight: 500; font-size: 0.9rem; border-bottom: 1px solid #eee; text-transform: none; }
+        .dropdown-menu li a { display: block; padding: 12px 20px; color: var(--text-color); font-weight: 500; font-size: 0.9rem; border-bottom: 1px solid #eee; text-transform: none; transition: var(--transition); }
         .dropdown-menu li a:hover { background-color: var(--secondary-color); color: var(--primary-color); padding-left: 25px; }
 
-        /* OBSAH STRÁNKY */
+        /* --- OBSAH STRÁNKY --- */
         .subpage-hero { height: 40vh; background: linear-gradient(45deg, var(--primary-color), var(--primary-light)); display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); margin-bottom: 50px; }
         .subpage-hero h1 { font-size: 3.5rem; font-weight: 800; }
         
@@ -54,6 +71,7 @@
         .about-text h3 { color: var(--primary-color); font-size: 1.4rem; margin-top: 40px; margin-bottom: 15px; text-transform: uppercase; font-weight: 700; border-bottom: 2px solid var(--hover-color); display: inline-block; padding-bottom: 5px; }
         .about-text p { margin-bottom: 20px; font-size: 1.1rem; text-align: justify; }
 
+        /* --- PATIČKA --- */
         footer { background: var(--primary-color); color: #fff; padding: 30px 0; text-align: center; margin-top: 80px; }
 
         /* MOBILNÍ VERZE */
@@ -62,7 +80,8 @@
             .hamburger { display: block; font-size: 1.8rem; cursor: pointer; color: var(--primary-color); }
             #menu-toggle:checked ~ .nav-links { display: flex; }
             
-            .dropdown-menu { position: static; display: block; box-shadow: none; border-top: none; background-color: #f9f9f9; padding-left: 0; min-width: 100%; }
+            /* Mobilní úprava dropdownu */
+            .dropdown-menu { position: static; display: none; box-shadow: none; border-top: none; background-color: #f9f9f9; padding-left: 0; min-width: 100%; }
             .dropdown-menu li a { padding: 10px; font-size: 0.85rem; border-bottom: 1px solid #e0e0e0; }
 
             .subpage-hero h1 { font-size: 2.5rem; }
@@ -71,6 +90,7 @@
     </style>
 </head>
 <body>
+
     <header>
         <div class="container header-content">
             <a href="index.html" class="logo">TISKCENTRUM</a>
@@ -131,22 +151,23 @@
 
     <script>
         function toggleMenu(event) {
-            event.preventDefault();
+            event.preventDefault();  
+            event.stopPropagation(); // Zabrání nechtěnému dvojitému kliknutí na mobilech
+            
             var submenu = document.getElementById("vyrobaSubmenu");
             submenu.classList.toggle("show");
         }
 
-        window.onclick = function(event) {
-            if (!event.target.matches('.dropdown > a') && !event.target.matches('.dropdown > a > i')) {
-                var dropdowns = document.getElementsByClassName("dropdown-menu");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
+        // Kliknutím kamkoliv jinam se menu zavře
+        document.addEventListener("click", function(event) {
+            var submenu = document.getElementById("vyrobaSubmenu");
+            var dropdown = document.querySelector(".dropdown");
+            
+            if (submenu && submenu.classList.contains("show") && !dropdown.contains(event.target)) {
+                submenu.classList.remove("show");
             }
-        }
+        });
     </script>
+
 </body>
 </html>
