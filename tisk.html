@@ -19,7 +19,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { line-height: 1.6; color: var(--text-color); }
+        body { line-height: 1.6; color: var(--text-color); overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
         
@@ -62,10 +62,10 @@
         .dropdown-menu li a { display: block; padding: 12px 20px; color: var(--text-color); font-weight: 500; font-size: 0.9rem; border-bottom: 1px solid #eee; text-transform: none; transition: var(--transition); }
         .dropdown-menu li a:hover { background-color: var(--secondary-color); color: var(--primary-color); padding-left: 25px; }
 
-        /* --- SUBPAGE HERO S VIDEEM NA POZADÍ (PŘEDĚLANO) --- */
+        /* --- SUBPAGE HERO S VIDEEM NA POZADÍ --- */
         .subpage-hero { 
             position: relative;
-            height: 45vh; /* Mírně vyšší pro lepší vyniknutí videa */
+            height: 45vh; 
             min-height: 350px;
             overflow: hidden;
             display: flex; 
@@ -74,36 +74,33 @@
             text-align: center; 
             color: var(--white); 
             margin-bottom: 50px; 
-            background: #000; /* Záložní pozadí */
+            background: #000; 
         }
 
-        /* Styl pro video na pozadí */
         .subpage-hero .back-video {
             position: absolute;
             top: 50%;
             left: 50%;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Vyplní prostor bez deformace */
+            object-fit: cover; 
             transform: translate(-50%, -50%);
-            z-index: 1; /* Video je dospod */
+            z-index: 1; 
         }
 
-        /* Tmavý filtr přes video pro čitelnost textu */
         .subpage-hero .video-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 51, 102, 0.7); /* Tmavě modrý filtr */
-            z-index: 2; /* Filtr nad videem */
+            background: rgba(0, 51, 102, 0.7); 
+            z-index: 2; 
         }
 
-        /* Kontejner pro text v banneru */
         .subpage-hero .hero-text-container {
             position: relative;
-            z-index: 3; /* Text úplně nahoře */
+            z-index: 3; 
         }
 
         .subpage-hero h1 { 
@@ -135,6 +132,21 @@
             background-repeat: no-repeat;
         }
 
+        /* --- ANIMACE (REVEAL) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            visibility: hidden;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+        .delay-1 { transition-delay: 0.2s; }
+        .delay-2 { transition-delay: 0.4s; }
+
         /* --- PATIČKA --- */
         footer { background: var(--primary-color); color: #fff; padding: 30px 0; text-align: center; margin-top: 80px; }
 
@@ -148,7 +160,7 @@
             .dropdown-menu { position: static; display: none; box-shadow: none; border-top: none; background-color: #f9f9f9; padding-left: 0; min-width: 100%; }
             .dropdown-menu li a { padding: 10px; font-size: 0.85rem; border-bottom: 1px solid #e0e0e0; }
 
-            .subpage-hero { height: 60vh; } /* Vyšší na mobilu pro video na výšku */
+            .subpage-hero { height: 60vh; } 
             .subpage-hero h1 { font-size: 2.3rem; }
             .about-text p { text-align: left; }
         }
@@ -183,9 +195,7 @@
     <section class="subpage-hero">
         <video autoplay muted loop playsinline class="back-video" id="hero-bg-video">
         </video>
-        
         <div class="video-overlay"></div>
-        
         <div class="container hero-text-container">
             <h1>Moderní tiskové stroje</h1>
         </div>
@@ -193,22 +203,23 @@
 
     <section class="container">
         <div class="about-text">
-            <p>Tiskové stroje Heidelberg vždy patřily a patří k absolutní špičce na světových trzích a to zejména díky dokonalému dílenskému zpracování, spolehlivosti a technickým inovacím. Dále jsou specifické vysokým stupněm automatizace pro dané potřeby tiskové produkce.</p>
+            <div class="reveal">
+                <p>Tiskové stroje Heidelberg vždy patřily a patří k absolutní špičce na světových trzích a to zejména díky dokonalému dílenskému zpracování, spolehlivosti a technickým inovacím. Dále jsou specifické vysokým stupněm automatizace pro dané potřeby tiskové produkce.</p>
+            </div>
             
-            <p>Důležitým pomocníkem je unikátní systém Printec Workflow, který zvládá řešit složité procesy polygrafického provozu jednoduchým způsobem. Od kalkulace, přes plánování výroby, tisk až po expedici. Systém jednoduše zpracuje celou technologii výroby a elektronicky komunikuje se všemi technologiemi a stroji, kterým předává důležité informace a parametry zadané zákazníkem v tiskových datech.</p>
+            <div class="reveal">
+                <p>Důležitým pomocníkem je unikátní systém Printec Workflow, který zvládá řešit složité procesy polygrafického provozu jednoduchým způsobem. Od kalkulace, přes plánování výroby, tisk až po expedici. Systém jednoduše zpracuje celou technologii výroby a elektronicky komunikuje se všemi technologiemi a stroji, kterým předává důležité informace a parametry zadané zákazníkem v tiskových datech.</p>
+            </div>
             
-            <p>Vysokou kapacitu produkce zajišťují stroje s maximálními formáty papíru B1 (750 × 1050 mm), síly až do 1 mm, při maximálním průjezdu 18 000 archů za hodinu.</p>
+            <div class="reveal">
+                <p>Vysokou kapacitu produkce zajišťují stroje s maximálními formáty papíru B1 (750 × 1050 mm), síly až do 1 mm, při maximálním průjezdu 18 000 archů za hodinu.</p>
+            </div>
         </div>
 
         <div class="tech-grid">
-            <div class="photo-item" style="background-image: url('tisk1.jpg');">
-            </div>
-            
-            <div class="photo-item" style="background-image: url('tisk2.jpg');">
-            </div>
-            
-            <div class="photo-item" style="background-image: url('tisk3.jpg');">
-            </div>
+            <div class="photo-item reveal delay-1" style="background-image: url('tisk1.jpg');"></div>
+            <div class="photo-item reveal delay-1" style="background-image: url('tisk2.jpg');"></div>
+            <div class="photo-item reveal delay-1" style="background-image: url('tisk3.jpg');"></div>
         </div>
     </section>
 
@@ -233,29 +244,35 @@
                 submenu.classList.remove("show");
             }
         });
-    </script>
 
-    <script>
+        // REVEAL ANIMATION SCRIPT
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        window.addEventListener("load", reveal);
+
+        // VIDEO SCRIPT
         document.addEventListener("DOMContentLoaded", function() {
             var video = document.getElementById('hero-bg-video');
             var source = document.createElement('source');
-
-            // Kontrola šířky okna prohlížeče
             if (window.innerWidth <= 768) {
-                // Načtení videa na výšku pro mobily
                 source.src = 'tisk-video-mobile.mp4'; 
             } else {
-                // Načtení klasického videa pro PC
                 source.src = 'tisk-video.mp4'; 
             }
-
             source.type = 'video/mp4';
             video.appendChild(source);
-            
-            // Příkaz k načtení vybraného videa
             video.load(); 
         });
     </script>
-
 </body>
 </html>
