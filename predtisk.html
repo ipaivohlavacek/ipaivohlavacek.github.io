@@ -19,7 +19,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { line-height: 1.6; color: var(--text-color); }
+        body { line-height: 1.6; color: var(--text-color); overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
         
@@ -88,6 +88,19 @@
         .about-text h3 { color: var(--primary-color); font-size: 1.5rem; margin-top: 40px; margin-bottom: 15px; text-transform: uppercase; font-weight: 700; border-bottom: 2px solid var(--hover-color); display: inline-block; padding-bottom: 5px; }
         .about-text p { margin-bottom: 20px; font-size: 1.1rem; text-align: justify; }
         
+        /* --- ANIMACE (REVEAL) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            visibility: hidden;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+
         /* --- PATIČKA --- */
         footer { background: var(--primary-color); color: #fff; padding: 30px 0; text-align: center; margin-top: 80px; }
 
@@ -140,21 +153,31 @@
 
     <section class="container">
         <div class="about-text">
-            <h3>Snadná obsluha a přesné ovládání</h3>
-            <p>Ovládací pult Prinect Press Center vzájemně propojuje integrované měřící systémy Printect Axis Control a Prinect Image Control, pomocí kterých kontroluje a hlídá přesnost soutisku a barevnost, neustále srovnává jejich hodnoty s tištěnými daty a dbá na jejich dodržování. Díky tomuto systému jsme schopni dosáhnout na špičku v kvalitě tisku.</p>
+            <div class="reveal">
+                <h3>Snadná obsluha a přesné ovládání</h3>
+                <p>Ovládací pult Prinect Press Center vzájemně propojuje integrované měřící systémy Printect Axis Control a Prinect Image Control, pomocí kterých kontroluje a hlídá přesnost soutisku a barevnost, neustále srovnává jejich hodnoty s tištěnými daty a dbá na jejich dodržování. Díky tomuto systému jsme schopni dosáhnout na špičku v kvalitě tisku.</p>
+            </div>
 
-            <h3>Prepress řešení pro předtiskovou přípravu</h3>
-            <p>Heidelberg systém CTP (Computer to Plate) a jeho softwarové a hardwarové vybavení nám umožňuje připravovat co možná nejpřesnější tiskové šablony s vysokou ostrostí a jemností tiskových bodů.</p>
+            <div class="reveal">
+                <h3>Prepress řešení pro předtiskovou přípravu</h3>
+                <p>Heidelberg systém CTP (Computer to Plate) a jeho softwarové a hardwarové vybavení nám umožňuje připravovat co možná nejpřesnější tiskové šablony s vysokou ostrostí a jemností tiskových bodů.</p>
+            </div>
 
-            <h3>Předtisková kontrola</h3>
-            <p>Nedílnou součástí procesu výroby je kontrola připravovaných šablon. Správné vyřazení, přesahy tisku a samozřejmě i celková kontrola plátu z hlediska přetisků, textů a jiných profilů.</p>
+            <div class="reveal">
+                <h3>Předtisková kontrola</h3>
+                <p>Nedílnou součástí procesu výroby je kontrola připravovaných šablon. Správné vyřazení, přesahy tisku a samozřejmě i celková kontrola plátu z hlediska přetisků, textů a jiných profilů.</p>
+            </div>
 
-            <h3>On-Line CTP</h3>
-            <p>Naše CTP osvitové jednotky pracují v poloautomatickém režimu a z kapacitních důvodů současně ve dvou formátových řadách. Příprava tiskových desek je vysoce produktivní a dokáže ve velice rychlém čase připravit podklady včetně kalibrovaného nátisku a funkčních maket tištěného produktu.</p>
-            <p>Špičkové stříkací a řezací plotry s ICC kamerovým systémem připravují makety k produktům s vysokou přesností technického zpracování a barevnosti.</p>
+            <div class="reveal">
+                <h3>On-Line CTP</h3>
+                <p>Naše CTP osvitové jednotky pracují v poloautomatickém režimu a z kapacitních důvodů současně ve dvou formátových řadách. Příprava tiskových desek je vysoce produktivní a dokáže ve velice rychlém čase připravit podklady včetně kalibrovaného nátisku a funkčních maket tištěného produktu.</p>
+                <p>Špičkové stříkací a řezací plotry s ICC kamerovým systémem připravují makety k produktům s vysokou přesností technického zpracování a barevnosti.</p>
+            </div>
 
-            <h3>CIP 4</h3>
-            <p>Systém Prinect Color Solution je optimalizace CIP4 dat, která přednastaví zóny barevnic tak, aby byl tiskový stroj co nejrychleji zabarven nebo pomohly přednastavit formáty dokončovacích strojů pro následné zpracování.</p>
+            <div class="reveal">
+                <h3>CIP 4</h3>
+                <p>Systém Prinect Color Solution je optimalizace CIP4 dat, která přednastaví zóny barevnic tak, aby byl tiskový stroj co nejrychleji zabarven nebo pomohly přednastavit formáty dokončovacích strojů pro následné zpracování.</p>
+            </div>
         </div>
     </section>
 
@@ -179,6 +202,21 @@
                 submenu.classList.remove("show");
             }
         });
+
+        // REVEAL ANIMATION SCRIPT
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        window.addEventListener("load", reveal);
     </script>
 
 </body>
