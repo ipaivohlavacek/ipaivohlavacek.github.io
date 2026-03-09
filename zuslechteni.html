@@ -19,7 +19,7 @@
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { line-height: 1.6; color: var(--text-color); }
+        body { line-height: 1.6; color: var(--text-color); overflow-x: hidden; }
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -56,7 +56,6 @@
         }
 
         .dropdown-menu.show { display: block !important; }
-
         .dropdown-menu li { width: 100%; }
         .dropdown-menu li a { display: block; padding: 12px 20px; color: var(--text-color); font-weight: 500; font-size: 0.9rem; border-bottom: 1px solid #eee; text-transform: none; transition: var(--transition); }
         .dropdown-menu li a:hover { background-color: var(--secondary-color); color: var(--primary-color); padding-left: 25px; }
@@ -84,6 +83,19 @@
         
         .about-text h3 { color: var(--primary-color); font-size: 1.4rem; margin-top: 40px; margin-bottom: 15px; text-transform: uppercase; font-weight: 700; border-bottom: 2px solid var(--hover-color); display: inline-block; padding-bottom: 5px; }
         .about-text p { margin-bottom: 20px; font-size: 1.1rem; text-align: justify; }
+
+        /* --- ANIMACE (REVEAL) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            visibility: hidden;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
 
         /* --- PATIČKA --- */
         footer { background: var(--primary-color); color: #fff; padding: 30px 0; text-align: center; margin-top: 80px; }
@@ -137,21 +149,29 @@
 
     <section class="container">
         <div class="about-text">
-            <h3>UV LAK</h3>
-            <p>Lakování je oblíbenou technologií pro zušlechťování produktů, vyznačuje se vysokým leskem a silnou vrstvou. Často se používá jako parciální (lokální) aplikace, kdy zdůrazňují jen určitá místa (fotografie), vhodné použití je při použití kontrastního matného lamina.</p>
-            <p>Naše tříčtvrtě-automatická linka ATMA dokáže pracovat v režimu 1500 taktů za hodinu. Sítotisková technologie zaručuje dostatečný nános tisknutého laku (materiálu) a je pořád co do kvality v tomto směru nepřekonaná.</p>
+            <div class="reveal">
+                <h3>UV LAK</h3>
+                <p>Lakování je oblíbenou technologií pro zušlechťování produktů, vyznačuje se vysokým leskem a silnou vrstvou. Často se používá jako parciální (lokální) aplikace, kdy zdůrazňují jen určitá místa (fotografie), vhodné použití je při použití kontrastního matného lamina.</p>
+                <p>Naše tříčtvrtě-automatická linka ATMA dokáže pracovat v režimu 1500 taktů za hodinu. Sítotisková technologie zaručuje dostatečný nános tisknutého laku (materiálu) a je pořád co do kvality v tomto směru nepřekonaná.</p>
+            </div>
 
-            <h3>RAŽBA</h3>
-            <p>K zušlechtění tiskoviny nebo krabičky na produkt se používá horká ražba jak s fólií tak bez, reliéfní ražba. Fólie v různých barevných odstínech dodávají produktu luxusní vzhled. Reliéfní ražba se používá i pro aplikaci bezpečnostních varovných symbolů. Reliéfní ražbou produkt můžeme kombinovat s dalšími technologiemi, jako je laminace, zlacení.</p>
+            <div class="reveal">
+                <h3>RAŽBA</h3>
+                <p>K zušlechtění tiskoviny nebo krabičky na produkt se používá horká ražba jak s fólií tak bez, reliéfní ražba. Fólie v různých barevných odstínech dodávají produktu luxusní vzhled. Reliéfní ražba se používá i pro aplikaci bezpečnostních varovných symbolů. Reliéfní ražbou produkt můžeme kombinovat s dalšími technologiemi, jako je laminace, zlacení.</p>
+            </div>
 
-            <h3>LAMINACE</h3>
-            <p>Laminace je neopominutelnou dokončovací technologií a určitě nejrozšířenější. Laminace jsou dostupná v různých tloušťkách, ve dvou základních specifikacích lesk / mat, popřípadě dalších specifických strukturách povrchu.</p>
-            <p>Naše plně automatická laminovací linka Foliant fóliuje již od 90 g a výše. Stohový nakladač s frikční nakládací hlavou pracuje rychlostí 1300 archů za hodinu. Pneumatický přítlak zajistí maximální adhezi. U této technologie je důležité vybírat laminovací fólie od ověřených evropských dodavatelů s dlouholetou tradicí v kvalitě fólie a síly lepící vrstvy.</p>
-            <p>Na samotný výsek navazují nebo naopak předcházejí další naše drobné technologie, které v této tiskovině nezmiňujeme, jako například kašírovací linka nebo lepící linka. Pomocí těchto přídavných technologií jsme schopni pokrýt výrobu od lékových krabiček až po kartónové vícevrstvé obaly na výrobky.</p>
-            <p>Pro menší série nebo makety pro obalový design slouží vysoce přesné řezací zařízení značky Zünd. Při těchto malých sériích není nutné vyrábět raznici a tudíž neprodražovat výrobek, nebo si naopak odzkoušet funkčnost navrženého výrobku.</p>
+            <div class="reveal">
+                <h3>LAMINACE</h3>
+                <p>Laminace je neopominutelnou dokončovací technologií a určitě nejrozšířenější. Laminace jsou dostupná v různých tloušťkách, ve dvou základních specifikacích lesk / mat, popřípadě dalších specifických strukturách povrchu.</p>
+                <p>Naše plně automatická laminovací linka Foliant fóliuje již od 90 g a výše. Stohový nakladač s frikční nakládací hlavou pracuje rychlostí 1300 archů za hodinu. Pneumatický přítlak zajistí maximální adhezi. U této technologie je důležité vybírat laminovací fólie od ověřených evropských dodavatelů s dlouholetou tradicí v kvalitě fólie a síly lepící vrstvy.</p>
+                <p>Na samotný výsek navazují nebo naopak předcházejí další naše drobné technologie, které v této tiskovině nezmiňujeme, jako například kašírovací linka nebo lepící linka. Pomocí těchto přídavných technologií jsme schopni pokrýt výrobu od lékových krabiček až po kartónové vícevrstvé obaly na výrobky.</p>
+                <p>Pro menší série nebo makety pro obalový design slouží vysoce přesné řezací zařízení značky Zünd. Při těchto malých sériích není nutné vyrábět raznici a tudíž neprodražovat výrobek, nebo si naopak odzkoušet funkčnost navrženého výrobku.</p>
+            </div>
 
-            <h3>VÝSEK</h3>
-            <p>Vysekávání potištěných archů pro dosažení požadovaného tvaru výrobku nebo komponentu pro další zpracování je nedílnou součástí každého polygrafického podniku.</p>
+            <div class="reveal">
+                <h3>VÝSEK</h3>
+                <p>Vysekávání potištěných archů pro dosažení požadovaného tvaru výrobku nebo komponentu pro další zpracování je nedílnou součástí každého polygrafického podniku.</p>
+            </div>
         </div>
     </section>
 
@@ -176,6 +196,21 @@
                 submenu.classList.remove("show");
             }
         });
+
+        // REVEAL ANIMATION SCRIPT
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        window.addEventListener("load", reveal);
     </script>
 </body>
 </html>
