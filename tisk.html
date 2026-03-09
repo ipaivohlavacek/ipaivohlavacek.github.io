@@ -37,7 +37,8 @@
         .nav-links > li > a { font-weight: 600; color: var(--primary-color); transition: var(--transition); font-size: 0.95rem; text-transform: uppercase; padding: 15px 0; display: block; }
         .nav-links > li > a:hover { color: var(--hover-color); }
         
-        /* --- DROPDOWN MENU (Upravené pro JS) --- */
+        /* --- DROPDOWN MENU --- */
+        .dropdown { position: relative; }
         .dropdown-menu { 
             display: none; 
             position: absolute; 
@@ -50,11 +51,16 @@
             z-index: 9999; 
         }
         
-        /* Třída pro zobrazení menu */
-        .dropdown-menu.show { display: block; }
+        /* TOTO PRAVIDLO PLATÍ POUZE PRO POČÍTAČE (odstraní konflikt na mobilu) */
+        @media (min-width: 769px) {
+            .dropdown:hover .dropdown-menu { display: block; }
+        }
+
+        /* Třída ovládaná JavaScriptem s absolutní prioritou */
+        .dropdown-menu.show { display: block !important; }
 
         .dropdown-menu li { width: 100%; }
-        .dropdown-menu li a { display: block; padding: 12px 20px; color: var(--text-color); font-weight: 500; font-size: 0.9rem; border-bottom: 1px solid #eee; text-transform: none; }
+        .dropdown-menu li a { display: block; padding: 12px 20px; color: var(--text-color); font-weight: 500; font-size: 0.9rem; border-bottom: 1px solid #eee; text-transform: none; transition: var(--transition); }
         .dropdown-menu li a:hover { background-color: var(--secondary-color); color: var(--primary-color); padding-left: 25px; }
 
         #menu-toggle, .hamburger { display: none; }
@@ -76,7 +82,7 @@
         /* --- TEXTOVÝ OBSAH --- */
         .about-text p { margin-bottom: 20px; font-size: 1.1rem; text-align: justify; }
         
-        /* --- GRID PRO FOTKY (NOVÉ) --- */
+        /* --- GRID PRO FOTKY --- */
         .tech-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
@@ -92,8 +98,6 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            /* Zde můžeš nastavit výchozí obrázek, pokud nemáš inline styl */
-            /* background-image: url('cesta/k/fotce.jpg'); */
         }
 
         /* --- PATIČKA --- */
@@ -106,8 +110,8 @@
             .hamburger { display: block; font-size: 1.8rem; cursor: pointer; color: var(--primary-color); }
             #menu-toggle:checked ~ .nav-links { display: flex; }
             
-            /* Mobilní dropdown */
-            .dropdown-menu { position: static; display: block; box-shadow: none; border-top: none; background-color: #f9f9f9; padding-left: 0; min-width: 100%; }
+            /* Mobilní úprava dropdownu - defaultně skryto */
+            .dropdown-menu { position: static; display: none; box-shadow: none; border-top: none; background-color: #f9f9f9; padding-left: 0; min-width: 100%; }
             .dropdown-menu li a { padding: 10px; font-size: 0.85rem; border-bottom: 1px solid #e0e0e0; }
 
             .subpage-hero h1 { font-size: 2.5rem; }
@@ -160,13 +164,13 @@
 
         <div class="tech-grid">
             <div class="photo-item" style="background-image: url('tisk1.jpg');">
-                </div>
+            </div>
             
             <div class="photo-item" style="background-image: url('tisk2.jpg');">
-                </div>
+            </div>
             
             <div class="photo-item" style="background-image: url('tisk3.jpg');">
-                </div>
+            </div>
         </div>
     </section>
 
@@ -178,25 +182,23 @@
 
     <script>
         function toggleMenu(event) {
-            event.preventDefault();
+            event.preventDefault();  
+            event.stopPropagation(); // Zabrání nechtěnému dvojitému kliknutí na mobilech
+            
             var submenu = document.getElementById("vyrobaSubmenu");
             submenu.classList.toggle("show");
         }
 
-        // Zavření menu při kliknutí mimo
-        window.onclick = function(event) {
-            if (!event.target.matches('.dropdown > a') && !event.target.matches('.dropdown > a > i')) {
-                var dropdowns = document.getElementsByClassName("dropdown-menu");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
+        // Kliknutím kamkoliv jinam se menu zavře
+        document.addEventListener("click", function(event) {
+            var submenu = document.getElementById("vyrobaSubmenu");
+            var dropdown = document.querySelector(".dropdown");
+            
+            if (submenu && submenu.classList.contains("show") && !dropdown.contains(event.target)) {
+                submenu.classList.remove("show");
             }
-        }
+        });
     </script>
 
 </body>
 </html>
-
